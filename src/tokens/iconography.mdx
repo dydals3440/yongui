@@ -1,0 +1,185 @@
+import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
+import { icons } from './iconography';
+
+<Meta title='Tokens/Iconography' />
+
+# Iconography
+
+YongUI는 [Lucide](https://lucide.dev/)의 아이콘을 기반으로 체계적으로 선별된 아이콘 세트를 제공합니다.
+번들 크기 최적화를 위해 필요한 아이콘만 선별하여 포함하고 있으며, 일관된 스타일과 크기를 유지합니다.
+
+## 아이콘 원칙
+
+### 🎨 일관성
+
+- **동일한 스타일**: 2px 선 굵기의 outline 스타일 유지
+- **통일된 그리드**: 24x24px 기본 크기
+- **색상 상속**: `currentColor`로 텍스트 색상과 자동 일치
+
+### 🚀 성능
+
+- **최적화된 번들**: 사용하는 아이콘만 포함
+- **Tree-shaking**: 미사용 아이콘 자동 제거
+- **SVG 최적화**: 최소한의 코드로 구성
+
+### ♿ 접근성
+
+- **의미 전달**: 아이콘과 텍스트 함께 사용
+- **적절한 라벨링**: `aria-label` 또는 `aria-hidden` 설정
+- **충분한 크기**: 최소 터치 영역 44x44px 보장
+
+## 아이콘 갤러리
+
+<IconGallery>
+  {Object.entries(icons).map(([name, Icon]) => (
+    <IconItem name={name}>
+      <Icon />
+    </IconItem>
+  ))}
+</IconGallery>
+
+## 사용 방법
+
+### 기본 사용
+
+```tsx
+import { icons } from '@/tokens/icongraphy';
+
+function MyComponent() {
+  const CheckIcon = icons.check;
+  return <CheckIcon size={24} color='green' />;
+}
+```
+
+### 동적 아이콘 선택
+
+```tsx
+import { icons, type IconName } from '@/tokens/icongraphy';
+
+function DynamicIcon({ name }: { name: IconName }) {
+  const Icon = icons[name];
+  return <Icon size={24} />;
+}
+```
+
+### 버튼과 함께 사용
+
+```tsx
+<Button variant='solid' tone='brand'>
+  <icons.check size={16} aria-hidden='true' />
+  저장하기
+</Button>
+```
+
+### 크기 가이드라인
+
+| 용도                | 크기 | 픽셀  |
+| :------------------ | :--- | :---- |
+| **인라인 텍스트**   | xs   | 16px  |
+| **버튼, 입력 필드** | sm   | 20px  |
+| **기본 UI**         | md   | 24px  |
+| **강조 액션**       | lg   | 32px  |
+| **일러스트레이션**  | xl   | 40px+ |
+
+## 아이콘 카테고리
+
+### 네비게이션
+
+- `chevronLeft`, `chevronRight` - 방향 이동
+- `menu` - 메뉴 열기
+- `x` - 닫기, 취소
+- `externalLink` - 외부 링크
+- `search` - 검색
+
+### 상태 표시
+
+- `check` - 완료, 선택
+- `circleAlert` - 경고
+- `info` - 정보
+- `star` - 즐겨찾기, 중요
+- `thumbsUp` - 좋아요
+
+### 가시성
+
+- `eye` - 보기
+- `eyeClosed` - 일부 숨김
+- `eyeOff` - 숨기기
+
+### 커뮤니케이션
+
+- `messageCircle` - 메시지, 댓글
+- `messageCircleMore` - 더보기
+- `handHeart` - 도움
+- `heartHandshake` - 협력
+
+### 시스템
+
+- `sun` - 라이트 모드
+- `moon` - 다크 모드
+- `clock` - 시간
+- `user` - 사용자
+- `codeXml` - 코드
+
+### 브랜드
+
+- `LinkedIn` - 링크드인 소셜
+
+## 접근성 가이드
+
+### 의미 있는 아이콘
+
+```tsx
+// 아이콘만 있는 버튼
+<button aria-label="메뉴 열기">
+  <icons.menu size={24} />
+</button>
+
+// 텍스트와 함께 사용
+<button>
+  <icons.check size={16} aria-hidden="true" />
+  <span>완료</span>
+</button>
+```
+
+### 장식용 아이콘
+
+```tsx
+<div>
+  <icons.info size={20} aria-hidden='true' />
+  <span>추가 정보가 있습니다</span>
+</div>
+```
+
+## 새 아이콘 추가
+
+새로운 아이콘이 필요한 경우:
+
+1. **Lucide에서 확인**: [lucide.dev](https://lucide.dev)에서 적합한 아이콘 검색
+2. **일관성 검토**: 기존 아이콘과 스타일이 일치하는지 확인
+3. **Import 추가**: `icongraphy.tsx`에 추가
+
+```tsx
+// icongraphy.tsx
+import { NewIcon } from 'lucide-react';
+
+export const icons = {
+  // ... existing icons
+  newIcon: NewIcon,
+};
+```
+
+## 모범 사례
+
+### ✅ Do
+
+- 의미가 명확한 아이콘 선택
+- 텍스트와 함께 사용
+- 적절한 크기와 여백 확보
+- 색상은 semantic 토큰 사용
+
+### ❌ Don't
+
+- 아이콘만으로 중요 기능 표현
+- 너무 작거나 큰 크기 사용
+- 다양한 스타일의 아이콘 혼용
+- 장식 목적으로 과도하게 사용

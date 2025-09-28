@@ -1,0 +1,572 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { borders, borderWidths } from './borders';
+
+<Meta title='Tokens/Borders' />
+
+# Borders
+
+YongUI의 테두리 시스템은 요소 간 경계를 명확히 하고 시각적 계층을 구성하는 데 사용됩니다.
+의미 기반 테두리 토큰과 일관된 두께 시스템으로 통일감 있는 인터페이스를 만듭니다.
+
+## 테두리 원칙
+
+### 🎨 의미 기반 사용
+- **상태 전달**: 색상으로 요소의 상태나 중요도 표현
+- **계층 구분**: 두께로 시각적 중요도 차별화
+- **일관된 스타일**: solid 스타일로 통일성 유지
+
+### 📐 체계적 두께
+- **3단계 시스템**: sm(1px), md(1.5px), lg(2px)
+- **용도별 구분**: 섬세한 구분선부터 강조 테두리까지
+- **픽셀 퍼펙트**: 선명한 렌더링을 위한 정수/반정수 단위
+
+### ♿ 접근성 고려
+- **충분한 대비**: 배경과 명확히 구분되는 색상
+- **일관된 의미**: 같은 색상은 항상 같은 의미
+- **포커스 표시**: 키보드 네비게이션을 위한 명확한 표시
+
+## 테두리 토큰
+
+### Semantic Borders
+
+YongUI는 6가지 의미 기반 테두리를 제공합니다. 각 테두리는 색상 시스템과 연동되어 라이트/다크 모드를 자동으로 지원합니다.
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '24px' }}>
+  <div style={{ padding: '24px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '6px', textAlign: 'center' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Neutral</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>기본 테두리</div>
+  </div>
+  <div style={{ padding: '24px', background: 'white', border: '2px solid #0064FF', borderRadius: '6px', textAlign: 'center' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px', color: '#0064FF' }}>Brand</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>브랜드 강조</div>
+  </div>
+  <div style={{ padding: '24px', background: '#fef2f2', border: '2px solid #ef4444', borderRadius: '6px', textAlign: 'center' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px', color: '#ef4444' }}>Danger</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>오류/경고</div>
+  </div>
+  <div style={{ padding: '24px', background: '#f0fdf4', border: '2px solid #22c55e', borderRadius: '6px', textAlign: 'center' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px', color: '#22c55e' }}>Success</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>성공/완료</div>
+  </div>
+  <div style={{ padding: '24px', background: '#fffbeb', border: '2px solid #fbbf24', borderRadius: '6px', textAlign: 'center' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px', color: '#f59e0b' }}>Warning</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>주의 필요</div>
+  </div>
+  <div style={{ padding: '24px', background: '#eff6ff', border: '2px solid #3b82f6', borderRadius: '6px', textAlign: 'center' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px', color: '#3b82f6' }}>Info</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>정보 제공</div>
+  </div>
+</div>
+
+#### Neutral (중립)
+기본 테두리로 가장 일반적으로 사용됩니다.
+
+```tsx
+// 카드 테두리
+<div className={css({ border: 'neutral' })}>
+  콘텐츠 영역
+</div>
+
+// 입력 필드
+<input className={css({ border: 'neutral' })} />
+```
+
+**사용 사례**
+- 카드 경계선
+- 입력 필드 테두리
+- 테이블 구분선
+- 섹션 분리선
+
+#### Brand (브랜드)
+브랜드 색상을 사용하여 주요 요소를 강조합니다.
+
+```tsx
+// 선택된 카드
+<div className={css({
+  border: 'brand',
+  borderWidth: 'lg'
+})}>
+  선택됨
+</div>
+
+// 포커스 상태
+<input className={css({
+  border: 'neutral',
+  _focus: { border: 'brand' }
+})} />
+```
+
+**사용 사례**
+- 선택된 항목
+- 포커스 인디케이터
+- 주요 액션 영역
+- 활성 탭
+
+#### Danger (위험)
+오류나 위험 상태를 나타냅니다.
+
+```tsx
+// 에러 입력 필드
+<input
+  className={css({ border: 'danger' })}
+  aria-invalid="true"
+/>
+
+// 경고 카드
+<div className={css({
+  border: 'danger',
+  bg: 'bg.danger'
+})}>
+  삭제 시 복구할 수 없습니다
+</div>
+```
+
+**사용 사례**
+- 유효성 검사 실패
+- 삭제 확인 영역
+- 위험 경고 박스
+- 오류 메시지 컨테이너
+
+#### Success (성공)
+성공이나 완료 상태를 표시합니다.
+
+```tsx
+// 성공 메시지
+<div className={css({
+  border: 'success',
+  bg: 'bg.success'
+})}>
+  저장되었습니다
+</div>
+
+// 완료된 단계
+<div className={css({ border: 'success' })}>
+  ✓ 완료
+</div>
+```
+
+**사용 사례**
+- 성공 알림
+- 완료된 작업
+- 유효한 입력
+- 긍정적 피드백
+
+#### Warning (경고)
+주의가 필요한 상태를 알립니다.
+
+```tsx
+// 경고 배너
+<div className={css({
+  border: 'warning',
+  borderWidth: 'md'
+})}>
+  저장되지 않은 변경사항이 있습니다
+</div>
+```
+
+**사용 사례**
+- 주의 메시지
+- 임시 저장 상태
+- 제한 사항 안내
+- 부분 완료
+
+#### Info (정보)
+추가 정보나 안내를 제공합니다.
+
+```tsx
+// 정보 박스
+<div className={css({
+  border: 'info',
+  bg: 'bg.info'
+})}>
+  💡 팁: 단축키를 사용하면 더 빠릅니다
+</div>
+```
+
+**사용 사례**
+- 도움말 박스
+- 팁과 힌트
+- 정보 패널
+- 안내 메시지
+
+## 테두리 두께
+
+### 크기 체계
+
+<div style={{ display: 'flex', gap: '24px', alignItems: 'center', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '24px' }}>
+  <div style={{ flex: 1, padding: '20px', background: 'white', border: '1px solid #64748b', borderRadius: '6px' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Small (1px)</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>섬세한 구분선</div>
+  </div>
+  <div style={{ flex: 1, padding: '20px', background: 'white', border: '1.5px solid #64748b', borderRadius: '6px' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Medium (1.5px)</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>적당한 강조</div>
+  </div>
+  <div style={{ flex: 1, padding: '20px', background: 'white', border: '2px solid #64748b', borderRadius: '6px' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Large (2px)</div>
+    <div style={{ fontSize: '14px', color: '#64748b' }}>강한 강조</div>
+  </div>
+</div>
+
+#### Small (1px)
+가장 섬세한 테두리로 콘텐츠 구분에 사용됩니다.
+
+```tsx
+<div className={css({
+  border: 'neutral',
+  borderWidth: 'sm' // 1px
+})}>
+  기본 테두리
+</div>
+```
+
+**사용 사례**
+- 기본 카드 테두리
+- 테이블 행 구분선
+- 드롭다운 구분선
+- 섬세한 분리선
+
+#### Medium (1.5px)
+중간 굵기로 적당한 강조가 필요할 때 사용합니다.
+
+```tsx
+<button className={css({
+  border: 'brand',
+  borderWidth: 'md' // 1.5px
+})}>
+  중요 버튼
+</button>
+```
+
+**사용 사례**
+- 호버 상태 테두리
+- 중요 입력 필드
+- 선택된 옵션
+- 구분이 필요한 섹션
+
+#### Large (2px)
+강한 강조가 필요한 곳에 사용합니다.
+
+```tsx
+<div className={css({
+  border: 'brand',
+  borderWidth: 'lg' // 2px
+})}>
+  강조된 영역
+</div>
+```
+
+**사용 사례**
+- 포커스 링
+- 주요 액션 버튼
+- 선택된 카드
+- 중요 알림 박스
+
+## 사용 가이드
+
+### 기본 사용법
+
+```tsx
+// 단축 속성 사용
+<div className={css({ border: 'neutral' })}>
+  기본 중립 테두리 (1px solid)
+</div>
+
+// 개별 속성 지정
+<div className={css({
+  borderColor: 'border.brand',
+  borderWidth: 'lg',
+  borderStyle: 'solid'
+})}>
+  커스텀 테두리
+</div>
+```
+
+### 방향별 테두리
+
+```tsx
+// 상단 테두리만
+<div className={css({
+  borderTop: 'neutral'
+})}>
+  상단 구분선
+</div>
+
+// 좌우 테두리
+<div className={css({
+  borderLeft: 'brand',
+  borderRight: 'brand',
+  borderWidth: 'md'
+})}>
+  양쪽 테두리
+</div>
+
+// 하단 강조선
+<nav className={css({
+  borderBottom: 'brand',
+  borderBottomWidth: 'lg'
+})}>
+  네비게이션
+</nav>
+```
+
+### 반응형 테두리
+
+```tsx
+// 화면 크기별 테두리
+<div className={css({
+  border: 'neutral',
+  borderWidth: ['sm', 'md', 'lg'],
+  // 모바일: 1px, 태블릿: 1.5px, 데스크탑: 2px
+})}>
+  반응형 테두리
+</div>
+```
+
+### 조건부 테두리
+
+```tsx
+// 상태에 따른 테두리
+const InputField = ({ hasError, isFocused }) => (
+  <input className={css({
+    border: hasError ? 'danger' : 'neutral',
+    borderWidth: isFocused ? 'lg' : 'sm',
+    transition: 'border 0.2s'
+  })} />
+);
+
+// 호버 효과
+<div className={css({
+  border: 'neutral',
+  _hover: {
+    border: 'brand',
+    borderWidth: 'md'
+  }
+})}>
+  호버 시 변경
+</div>
+```
+
+## 실전 패턴
+
+### 카드 컴포넌트
+
+```tsx
+const Card = ({ selected, children }) => (
+  <div className={css({
+    border: selected ? 'brand' : 'neutral',
+    borderWidth: selected ? 'lg' : 'sm',
+    borderRadius: 'md',
+    p: '16',
+    transition: 'all 0.2s',
+    _hover: {
+      borderColor: 'border.brand',
+      boxShadow: 'sm'
+    }
+  })}>
+    {children}
+  </div>
+);
+```
+
+### 입력 필드 검증
+
+```tsx
+const ValidatedInput = ({ error, success, ...props }) => {
+  const getBorderStyle = () => {
+    if (error) return 'danger';
+    if (success) return 'success';
+    return 'neutral';
+  };
+
+  return (
+    <div>
+      <input
+        className={css({
+          border: getBorderStyle(),
+          borderWidth: error || success ? 'md' : 'sm',
+          _focus: {
+            borderWidth: 'lg',
+            outline: 'none'
+          }
+        })}
+        aria-invalid={!!error}
+        {...props}
+      />
+      {error && (
+        <span className={css({ color: 'fg.danger', fontSize: 'sm' })}>
+          {error}
+        </span>
+      )}
+    </div>
+  );
+};
+```
+
+### 테이블 스타일링
+
+```tsx
+const Table = ({ data }) => (
+  <table className={css({
+    width: '100%',
+    borderCollapse: 'collapse'
+  })}>
+    <thead>
+      <tr className={css({
+        borderBottom: 'neutral',
+        borderBottomWidth: 'lg'
+      })}>
+        {/* 헤더 */}
+      </tr>
+    </thead>
+    <tbody>
+      {data.map((row, idx) => (
+        <tr
+          key={idx}
+          className={css({
+            borderBottom: 'neutral',
+            borderBottomWidth: 'sm',
+            _last: { border: 'none' }
+          })}
+        >
+          {/* 행 데이터 */}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+```
+
+### 탭 네비게이션
+
+```tsx
+const TabNav = ({ tabs, activeTab }) => (
+  <nav className={css({
+    borderBottom: 'neutral',
+    borderBottomWidth: 'sm'
+  })}>
+    {tabs.map(tab => (
+      <button
+        key={tab.id}
+        className={css({
+          pb: '12',
+          px: '16',
+          borderBottom: tab.id === activeTab ? 'brand' : 'none',
+          borderBottomWidth: 'lg',
+          mb: '-1px', // 부모 테두리와 겹치기
+          color: tab.id === activeTab ? 'fg.brand' : 'fg.neutral'
+        })}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </nav>
+);
+```
+
+## 접근성 고려사항
+
+### 포커스 표시
+
+```tsx
+// 명확한 포커스 인디케이터
+<button className={css({
+  border: 'neutral',
+  _focusVisible: {
+    border: 'brand',
+    borderWidth: 'lg',
+    outline: 'none'
+  }
+})}>
+  접근 가능한 버튼
+</button>
+```
+
+### 색상 의존성 피하기
+
+```tsx
+// ❌ 색상만으로 구분
+<div className={css({ border: 'danger' })}>
+  오류
+</div>
+
+// ✅ 아이콘과 텍스트 함께 사용
+<div className={css({
+  border: 'danger',
+  borderWidth: 'md'
+})}>
+  <icons.circleAlert aria-hidden="true" />
+  <span>오류: 필수 항목을 입력하세요</span>
+</div>
+```
+
+## 다크 모드 대응
+
+```tsx
+// 자동 다크 모드 지원
+<div className={css({
+  border: 'neutral' // 라이트/다크 모드 자동 전환
+})}>
+  테마 적응형 테두리
+</div>
+
+// 커스텀 다크 모드 스타일
+<div className={css({
+  border: 'neutral',
+  _dark: {
+    borderWidth: 'md' // 다크 모드에서 더 두껍게
+  }
+})}>
+  다크 모드 최적화
+</div>
+```
+
+## 모범 사례
+
+### ✅ Do
+
+- **의미에 맞는 색상 사용**: danger는 오류, success는 성공
+- **일관된 두께 적용**: 같은 레벨의 요소는 같은 두께
+- **충분한 대비 유지**: 배경과 명확히 구분되도록
+- **포커스 상태 제공**: 키보드 사용자를 위한 시각적 피드백
+
+### ❌ Don't
+
+- **너무 많은 테두리**: 과도한 사용은 복잡해 보임
+- **임의의 색상 사용**: 시스템 외부 색상 사용 지양
+- **불규칙한 두께**: 일관성 없는 두께 혼용
+- **색상만으로 의미 전달**: 색맹 사용자 고려 필요
+
+## 성능 팁
+
+### box-shadow vs border
+
+```tsx
+// border - 레이아웃에 영향
+<div className={css({
+  border: 'neutral',
+  borderWidth: 'sm'
+})}>
+  1px 공간 차지
+</div>
+
+// box-shadow - 레이아웃에 영향 없음
+<div className={css({
+  boxShadow: '0 0 0 1px {colors.border.neutral}'
+})}>
+  레이아웃 영향 없음
+</div>
+```
+
+### 트랜지션 최적화
+
+```tsx
+// 특정 속성만 트랜지션
+<div className={css({
+  border: 'neutral',
+  transition: 'border-color 0.2s', // border 전체가 아닌 색상만
+  _hover: { borderColor: 'border.brand' }
+})}>
+  최적화된 트랜지션
+</div>
+```

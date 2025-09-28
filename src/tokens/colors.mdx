@@ -1,0 +1,322 @@
+import { ColorItem, ColorPalette, Meta } from '@storybook/addon-docs/blocks';
+import { colors, semanticColors } from './colors';
+
+<Meta title='Tokens/Colors' />
+
+# Colors
+
+YongUI의 색상 시스템은 일관되고 접근 가능한 사용자 인터페이스를 구축하기 위해 설계되었습니다.
+색상은 **Primitive Colors**와 **Semantic Colors** 두 가지 레벨로 구성됩니다.
+
+## Semantic Colors
+
+Semantic Colors는 특정 용도와 의미를 가진 색상 토큰입니다. 이를 통해 일관된 색상 사용과 테마 변경이 쉬워집니다.
+
+### 색상 그룹
+
+- **fg (Foreground)**: 텍스트와 아이콘 색상
+- **bg (Background)**: 배경 색상
+- **border**: 테두리 색상
+- **fgSolid**: 솔리드 배경 위의 텍스트 색상
+- **bgSolid**: 솔리드 컴포넌트 배경 색상
+
+### 색상 상태
+
+각 색상은 다음 상태를 가질 수 있습니다:
+
+- **DEFAULT**: 기본 상태
+- **hover**: 호버 상태
+- **active**: 활성 상태
+- **disabled**: 비활성 상태
+
+<ColorPalette>
+  {Object.entries(semanticColors)
+    .filter(([category]) => category !== 'appBg')
+    .map(([category, categoryColors]) => (
+      <div key={category}>
+        <h4>{category}</h4>
+        {Object.entries(categoryColors).map(([semantic, colorStates]) => {
+          // fgSolid 등: { value: { base: ... } }
+          if (
+            colorStates &&
+            'value' in colorStates &&
+            colorStates.value &&
+            typeof colorStates.value.base === 'string'
+          ) {
+            let base = colorStates.value.base;
+            let resolved = base;
+            const ref = base.match(/^\{colors\.([a-zA-Z]+)\.(\d+)\}$/);
+            if (ref) {
+              const colorName = ref[1];
+              const scale = ref[2];
+              resolved = colors[colorName]?.[scale]?.value ?? base;
+            } else {
+              const single = base.match(/^\{colors\.([a-zA-Z]+)\}$/);
+              if (single) {
+                const colorName = single[1];
+                resolved = colors[colorName]?.value ?? base;
+              }
+            }
+            return (
+              <ColorItem
+                key={semantic}
+                title={`${category}.${semantic}`}
+                colors={{ base: resolved }}
+              />
+            );
+          }
+          // bg, fg, border 등: { default: { value: { base: ... } }, ... }
+          if (colorStates && typeof colorStates === 'object') {
+            const resolvedColors = Object.entries(colorStates).reduce(
+              (colorMap, [state, stateValue]) => {
+                if (
+                  stateValue &&
+                  stateValue.value &&
+                  typeof stateValue.value.base === 'string'
+                ) {
+                  let base = stateValue.value.base;
+                  let resolved = base;
+                  const ref = base.match(/^\{colors\.([a-zA-Z]+)\.(\d+)\}$/);
+                  if (ref) {
+                    const colorName = ref[1];
+                    const scale = ref[2];
+                    resolved = colors[colorName]?.[scale]?.value ?? base;
+                  } else {
+                    const single = base.match(/^\{colors\.([a-zA-Z]+)\}$/);
+                    if (single) {
+                      const colorName = single[1];
+                      resolved = colors[colorName]?.value ?? base;
+                    }
+                  }
+                  colorMap[state] = resolved;
+                }
+                return colorMap;
+              },
+              {}
+            );
+            return (
+              <ColorItem
+                key={semantic}
+                title={`${category}.${semantic}`}
+                colors={resolvedColors}
+              />
+            );
+          }
+          return null;
+        })}
+      </div>
+    ))}
+</ColorPalette>
+
+---
+
+## Primitive Colors
+
+YongUI의 기본 색상 팔레트입니다. 각 색상은 12단계의 스케일로 구성되어 있으며,
+라이트 모드와 다크 모드를 위한 별도의 팔레트를 제공합니다.
+
+### 색상 스케일 사용 가이드
+
+각 색상은 12단계의 스케일로 구성되어 있으며, 숫자가 높을수록 색상이 진해집니다.
+각 스케일의 구체적인 용도는 다음과 같습니다:
+
+#### 🎨 Scale 1-2: 가장 연한 배경
+
+- **언제 사용하나요?** 페이지 섹션을 시각적으로 구분하거나 콘텐츠 그룹을 나타낼 때
+- **사용 예시**: 대시보드 섹션 배경, 카드 컨테이너, 테이블 줄무늬, 코드 블록 배경
+- **주의사항**: 너무 미묘해서 잘 보이지 않을 수 있으니 충분한 면적에 사용하세요
+
+#### 🎨 Scale 3-5: 인터랙티브 요소 배경
+
+- **언제 사용하나요?** 사용자가 상호작용할 수 있는 UI 요소의 상태를 표현할 때
+- **사용 예시**:
+  - Scale 3: 버튼 기본 배경, 입력 필드 배경
+  - Scale 4: 호버 상태의 버튼, 포커스된 입력 필드
+  - Scale 5: 클릭/활성 상태의 버튼, 선택된 항목
+- **주의사항**: 호버와 액티브 상태를 명확히 구분할 수 있도록 단계적으로 사용하세요
+
+#### 🎨 Scale 6-8: 테두리와 구분선
+
+- **언제 사용하나요?** 요소 간 경계를 만들거나 그룹을 구분할 때
+- **사용 예시**:
+  - Scale 6: 섬세한 구분선, 테이블 보더
+  - Scale 7: 카드 테두리, 입력 필드 테두리
+  - Scale 8: 호버 시 테두리, 포커스 링
+- **주의사항**: 다크 모드에서도 충분히 보이는지 확인하세요
+
+#### 🎨 Scale 9-10: 강조와 액션
+
+- **언제 사용하나요?** 주요 액션 버튼이나 중요한 요소를 강조할 때
+- **사용 예시**:
+  - Scale 9: Primary 버튼 배경, 선택된 탭, 액티브 네비게이션
+  - Scale 10: Primary 버튼 호버 상태, 강조된 링크
+- **주의사항**: 페이지당 한두 개의 주요 액션에만 사용하여 시각적 계층을 유지하세요
+
+#### 🎨 Scale 11-12: 텍스트와 아이콘
+
+- **언제 사용하나요?** 읽을 수 있는 콘텐츠를 표시할 때
+- **사용 예시**:
+  - Scale 11: 본문 텍스트, 설명 텍스트, 일반 아이콘
+  - Scale 12: 제목, 레이블, 강조 텍스트, 중요 아이콘
+- **주의사항**: 배경색과 충분한 대비를 유지하여 가독성을 보장하세요
+
+### Brand Colors
+
+<ColorPalette>
+  <ColorItem
+    title='파랑 (Primary)'
+    subtitle='colors.violet'
+    colors={Object.fromEntries(
+      Object.entries(colors.violet).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='파랑 Dark (Primary)'
+    subtitle='colors.darkTeal'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkTeal).map(([name, { value }]) => [name, value])
+    )}
+  />
+</ColorPalette>
+
+### Feedback Colors
+
+<ColorPalette>
+  <ColorItem
+    title='빨강 (Danger)'
+    subtitle='colors.red'
+    colors={Object.fromEntries(
+      Object.entries(colors.red).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='빨강 Dark (Danger)'
+    subtitle='colors.darkRed'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkRed).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='노랑 (Warning)'
+    subtitle='colors.amber'
+    colors={Object.fromEntries(
+      Object.entries(colors.amber).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='노랑 Dark (Warning)'
+    subtitle='colors.darkAmber'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkAmber).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='초록 (Success)'
+    subtitle='colors.green'
+    colors={Object.fromEntries(
+      Object.entries(colors.green).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='초록 Dark (Success)'
+    subtitle='colors.darkGreen'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkGreen).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='파랑 (Info)'
+    subtitle='colors.blue'
+    colors={Object.fromEntries(
+      Object.entries(colors.blue).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='파랑 Dark (Info)'
+    subtitle='colors.darkBlue'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkBlue).map(([name, { value }]) => [name, value])
+    )}
+  />
+</ColorPalette>
+
+### Neutral Colors
+
+<ColorPalette>
+  <ColorItem
+    title='회색 (Slate)'
+    subtitle='colors.slate'
+    colors={Object.fromEntries(
+      Object.entries(colors.slate).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='회색 Dark (Slate)'
+    subtitle='colors.darkSlate'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkSlate).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='세이지 (Sage)'
+    subtitle='colors.sage'
+    colors={Object.fromEntries(
+      Object.entries(colors.sage).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='세이지 Dark (Sage)'
+    subtitle='colors.darkSage'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkSage).map(([name, { value }]) => [name, value])
+    )}
+  />
+</ColorPalette>
+
+### Additional Colors
+
+<ColorPalette>
+  <ColorItem
+    title='청록 (Teal)'
+    subtitle='colors.teal'
+    colors={Object.fromEntries(
+      Object.entries(colors.teal).map(([name, { value }]) => [name, value])
+    )}
+  />
+  <ColorItem
+    title='보라 Dark'
+    subtitle='colors.darkViolet'
+    colors={Object.fromEntries(
+      Object.entries(colors.darkViolet).map(([name, { value }]) => [
+        name,
+        value,
+      ])
+    )}
+  />
+</ColorPalette>
+
+## 사용 가이드
+
+### 접근성
+
+- 텍스트와 배경 간 명암비는 WCAG 2.1 AA 기준(4.5:1 이상)을 충족해야 합니다
+- 중요한 인터페이스 요소는 AAA 기준(7:1 이상)을 목표로 합니다
+- 색상만으로 정보를 전달하지 않고, 아이콘이나 텍스트를 함께 사용합니다
+
+### 다크 모드
+
+YongUI는 라이트/다크 모드를 모두 지원합니다. Semantic Colors를 사용하면 자동으로 테마에 맞는 색상이 적용됩니다.
+
+```tsx
+// Good - Semantic color 사용
+<Button tone="brand">확인</Button>
+
+// Avoid - Primitive color 직접 사용
+<div style={{ background: '#0064FF' }}>...</div>
+```
+
+### 일관성 유지
+
+- 동일한 의미를 가진 요소는 항상 같은 색상을 사용합니다
+- 새로운 색상 추가보다는 기존 팔레트 활용을 우선시합니다
+- 컴포넌트 간 색상 사용의 일관성을 유지합니다

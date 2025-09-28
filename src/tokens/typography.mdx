@@ -1,0 +1,383 @@
+import { Meta, Typeset } from '@storybook/addon-docs/blocks';
+import { textStyles, fonts, fontWeights, fontSizes, letterSpacings, lineHeights } from './typography';
+
+<Meta title="Tokens/Typography" />
+
+# Typography
+
+YongUI의 타이포그래피 시스템은 명확한 정보 계층과 뛰어난 가독성을 제공합니다.
+[Pretendard Variable](https://github.com/orioncactus/pretendard)을 주 서체로 사용하며, 체계적인 텍스트 스타일을 제공합니다.
+
+## 타이포그래피 원칙
+
+### 📖 가독성 우선
+- **충분한 크기**: 본문은 최소 14px(0.875rem) 이상 사용
+- **적절한 행간**: 읽기 편한 1.5배 기본 행간
+- **명확한 계층**: 크기, 굵기, 색상으로 정보 계층 구분
+
+### 🎯 일관성
+- **통일된 스케일**: 12단계의 체계적인 크기 시스템
+- **제한된 스타일**: 필요한 만큼만 스타일 정의
+- **예측 가능한 사용**: 동일한 용도는 항상 같은 스타일
+
+### ♿ 접근성
+- **최소 크기 준수**: 본문 14px, 캡션 12px 이상
+- **충분한 대비**: WCAG 2.1 기준 충족
+- **유연한 단위**: rem 단위 사용으로 사용자 설정 존중
+
+## 텍스트 스타일
+
+### Display
+화면의 주요 메시지를 전달하는 가장 큰 텍스트 스타일입니다.
+
+#### Display Large
+<Typeset
+  fontSizes={[fontSizes['8xl'].value]}
+  fontWeight={fontWeights.bold.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.tight.value}
+  sampleText='임팩트 있는 대형 타이틀'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 72px (4.5rem)
+- **굵기**: Bold (700)
+- **사용처**: 랜딩 페이지 히어로, 대시보드 주요 지표
+
+#### Display Medium
+<Typeset
+  fontSizes={[fontSizes['7xl'].value]}
+  fontWeight={fontWeights.bold.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.tight.value}
+  sampleText='중요한 메시지 전달'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 60px (3.75rem)
+- **굵기**: Bold (700)
+- **사용처**: 섹션 헤더, 캠페인 타이틀
+
+#### Display Small
+<Typeset
+  fontSizes={[fontSizes['5xl'].value]}
+  fontWeight={fontWeights.bold.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.tight.value}
+  sampleText='콘텐츠 강조 타이틀'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 44px (2.75rem)
+- **굵기**: Bold (700)
+- **사용처**: 카드 헤더, 모바일 히어로
+
+### Title
+페이지나 섹션의 제목으로 사용되는 스타일입니다.
+
+#### Title Large
+<Typeset
+  fontSizes={[fontSizes['4xl'].value]}
+  fontWeight={fontWeights.semibold.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='페이지 메인 타이틀'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 36px (2.25rem)
+- **굵기**: Semibold (600)
+- **사용처**: 페이지 제목, 모달 헤더
+
+#### Title Medium
+<Typeset
+  fontSizes={[fontSizes['3xl'].value]}
+  fontWeight={fontWeights.semibold.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='섹션 타이틀'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 30px (1.875rem)
+- **굵기**: Semibold (600)
+- **사용처**: 섹션 제목, 카드 타이틀
+
+#### Title Small
+<Typeset
+  fontSizes={[fontSizes['2xl'].value]}
+  fontWeight={fontWeights.medium.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='서브 타이틀'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 24px (1.5rem)
+- **굵기**: Medium (500)
+- **사용처**: 서브섹션 제목, 리스트 헤더
+
+### Body
+일반적인 읽기 텍스트에 사용됩니다.
+
+#### Body Large
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.normal.value}
+  lineHeight={lineHeights.balanced.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='주요 본문이나 강조된 단락에 사용됩니다. 충분한 크기로 긴 텍스트도 편안하게 읽을 수 있습니다.'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 18px (1.125rem)
+- **굵기**: Normal (400)
+- **사용처**: 주요 본문, 인트로 텍스트
+
+#### Body Medium
+<Typeset
+  fontSizes={[fontSizes.md.value]}
+  fontWeight={fontWeights.normal.value}
+  lineHeight={lineHeights.balanced.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='기본 본문 텍스트입니다. 대부분의 콘텐츠에 사용되며 최적의 가독성을 제공합니다.'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 16px (1rem)
+- **굵기**: Normal (400)
+- **사용처**: 기본 본문, 설명 텍스트
+
+#### Body Small
+<Typeset
+  fontSizes={[fontSizes.sm.value]}
+  fontWeight={fontWeights.semibold.value}
+  lineHeight={lineHeights.balanced.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='보조 텍스트나 짧은 설명에 사용됩니다.'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 14px (0.875rem)
+- **굵기**: Semibold (600)
+- **사용처**: 보조 설명, 메타 정보
+
+### Label
+UI 컴포넌트의 레이블이나 짧은 텍스트에 사용됩니다.
+
+#### Label Large
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.medium.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='큰 레이블 텍스트'
+  fontFamily={fonts.sans.value}
+/>
+
+#### Label Large Underline
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.medium.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='링크나 강조 레이블'
+  fontFamily={fonts.sans.value}
+  style={{ textDecoration: 'underline' }}
+/>
+
+#### Label Medium
+<Typeset
+  fontSizes={[fontSizes.md.value]}
+  fontWeight={fontWeights.medium.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='기본 레이블 텍스트'
+  fontFamily={fonts.sans.value}
+/>
+
+#### Label Medium Strong
+<Typeset
+  fontSizes={[fontSizes.md.value]}
+  fontWeight={fontWeights.semibold.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='강조된 레이블'
+  fontFamily={fonts.sans.value}
+/>
+
+#### Label Small
+<Typeset
+  fontSizes={[fontSizes.sm.value]}
+  fontWeight={fontWeights.medium.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='작은 레이블 텍스트'
+  fontFamily={fonts.sans.value}
+/>
+
+### Caption
+작은 보조 텍스트에 사용됩니다.
+
+<Typeset
+  fontSizes={[fontSizes.xs.value]}
+  fontWeight={fontWeights.medium.value}
+  lineHeight={lineHeights.tight.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText='이미지 설명, 도움말, 타임스탬프 등 작은 보조 정보'
+  fontFamily={fonts.sans.value}
+/>
+- **크기**: 12px (0.75rem)
+- **굵기**: Medium (500)
+- **사용처**: 캡션, 도움말, 메타데이터
+
+### Code
+코드나 기술적 텍스트 표시용 스타일입니다.
+
+<Typeset
+  fontSizes={[fontSizes.sm.value]}
+  fontWeight={fontWeights.medium.value}
+  lineHeight={lineHeights.balanced.value}
+  letterSpacing={letterSpacings.balanced.value}
+  sampleText="const code = 'Monospace font for code';"
+  fontFamily={fonts.mono.value}
+/>
+- **크기**: 14px (0.875rem)
+- **서체**: JetBrains Mono
+- **사용처**: 인라인 코드, 기술 텍스트
+
+## 글꼴 시스템
+
+### 글꼴 크기 (Font Sizes)
+
+<h4>
+  {Object.entries(fontSizes)
+    .map(([name, { value }]) => `${name} (${value})`)
+    .join(' • ')}
+</h4>
+
+<Typeset
+  fontSizes={Object.values(fontSizes).map(({ value }) => value)}
+  fontWeight={fontWeights.normal.value}
+  sampleText='YongUI Design System'
+  fontFamily={fonts.sans.value}
+/>
+
+### 글꼴 굵기 (Font Weights)
+
+#### Normal (400)
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.normal.value}
+  sampleText='본문에 사용되는 기본 굵기입니다'
+  fontFamily={fonts.sans.value}
+/>
+
+#### Medium (500)
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.medium.value}
+  sampleText='레이블과 캡션에 사용되는 중간 굵기입니다'
+  fontFamily={fonts.sans.value}
+/>
+
+#### Semibold (600)
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.semibold.value}
+  sampleText='부제목과 강조에 사용되는 세미볼드입니다'
+  fontFamily={fonts.sans.value}
+/>
+
+#### Bold (700)
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.bold.value}
+  sampleText='제목과 헤딩에 사용되는 볼드입니다'
+  fontFamily={fonts.sans.value}
+/>
+
+### 글꼴 패밀리 (Font Family)
+
+#### Pretendard Variable
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.normal.value}
+  sampleText='가나다라마바사 ABCDEFGHIJK 1234567890 !@#$%'
+  fontFamily={fonts.sans.value}
+/>
+
+**주 서체** • 본문, 제목, UI 텍스트
+- 한글과 영문의 조화로운 균형
+- Variable Font로 세밀한 굵기 조절 가능
+- 다양한 환경에서 뛰어난 가독성
+
+#### JetBrains Mono
+<Typeset
+  fontSizes={[fontSizes.lg.value]}
+  fontWeight={fontWeights.normal.value}
+  sampleText="const code = { font: 'JetBrains Mono', ligatures: true };"
+  fontFamily={fonts.mono.value}
+/>
+
+**고정폭 서체** • 코드, 숫자, 기술적 텍스트
+- 코드 가독성에 최적화
+- 문자 구분이 명확한 디자인
+- 프로그래밍 리거처 지원
+
+## 사용 가이드
+
+### 계층 구조 만들기
+```tsx
+// 명확한 정보 계층
+<h1 style={textStyles.title.lg.value}>페이지 제목</h1>
+<h2 style={textStyles.heading['2'].value}>섹션 제목</h2>
+<p style={textStyles.body.md.value}>본문 내용...</p>
+<span style={textStyles.caption.value}>추가 정보</span>
+```
+
+### 일관된 스타일 적용
+```tsx
+// Panda CSS와 함께 사용
+<p className={css({ textStyle: 'body.md' })}>
+  본문 텍스트
+</p>
+
+// 직접 스타일 객체 사용
+<h1 style={textStyles.display.sm.value}>
+  디스플레이 제목
+</h1>
+```
+
+### 반응형 타이포그래피
+```tsx
+// 화면 크기에 따른 크기 조정
+<h1 className={css({
+  textStyle: ['title.sm', 'title.md', 'title.lg'],
+  // 모바일: sm, 태블릿: md, 데스크탑: lg
+})}>
+  반응형 제목
+</h1>
+```
+
+## 접근성 고려사항
+
+### 최소 크기
+- **본문**: 14px (0.875rem) 이상
+- **캡션**: 12px (0.75rem) 이상
+- **중요 정보**: 16px (1rem) 이상 권장
+
+### 행간과 자간
+- **긴 텍스트**: `lineHeight: 'balanced'` (1.5)
+- **제목**: `lineHeight: 'tight'` (1.2)
+- **자간**: 서체 특성에 맞게 조정
+
+### 대비와 가독성
+- **본문**: AA 기준 4.5:1 이상
+- **제목**: AAA 기준 7:1 권장
+- **색상**: Colors 가이드의 `fg` 토큰 사용
+
+## 모범 사례
+
+### ✅ Do
+- 정의된 텍스트 스타일 사용
+- 용도에 맞는 스타일 선택
+- 일관된 계층 구조 유지
+- 충분한 여백 확보
+
+### ❌ Don't
+- 임의의 크기나 굵기 사용
+- 너무 많은 스타일 혼용
+- 작은 크기에 얇은 굵기 조합
+- 긴 텍스트에 좁은 행간 적용

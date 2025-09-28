@@ -1,0 +1,494 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { spacing } from './spacing';
+
+<Meta title='Tokens/Spacing' />
+
+# Spacing
+
+YongUI의 간격 시스템은 일관된 레이아웃과 시각적 리듬을 만들기 위한 12단계 스케일을 제공합니다.
+4px 기반 그리드로 구성되어 있으며, 모든 margin, padding, gap 등의 간격 속성에 사용됩니다.
+
+## 간격 원칙
+
+### 일관된 리듬
+- **4px 기반 시스템**: 4의 배수로 구성된 체계적인 간격
+- **12단계 스케일**: 0부터 48px까지 점진적 증가
+- **예측 가능한 레이아웃**: 일관된 간격으로 시각적 조화
+
+### 반응형 디자인
+- **rem 단위 사용**: 사용자 설정에 따라 유연하게 조정
+- **브레이크포인트별 간격**: 화면 크기에 따른 적응형 간격
+- **컨텍스트 기반**: 용도에 맞는 적절한 간격 선택
+
+### 효율적 사용
+- **최소 간격**: 불필요한 여백 없이 콘텐츠 중심
+- **시각적 그룹핑**: 관련 요소는 가깝게, 별개 요소는 멀게
+- **일관된 적용**: 동일 레벨 요소는 동일한 간격
+
+## Spacing 스케일
+
+<div style={{ padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '24px' }}>
+  <div style={{ display: 'grid', gap: '12px', marginBottom: '24px' }}>
+    {/* 0 - 2px */}
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>0</div>
+      <div style={{ width: '0px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>0rem • 없음</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>2</div>
+      <div style={{ width: '2px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>0.125rem • 2px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>4</div>
+      <div style={{ width: '4px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>0.25rem • 4px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>8</div>
+      <div style={{ width: '8px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>0.5rem • 8px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>12</div>
+      <div style={{ width: '12px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>0.75rem • 12px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>16</div>
+      <div style={{ width: '16px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>1rem • 16px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>20</div>
+      <div style={{ width: '20px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>1.25rem • 20px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>24</div>
+      <div style={{ width: '24px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>1.5rem • 24px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>32</div>
+      <div style={{ width: '32px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>2rem • 32px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>36</div>
+      <div style={{ width: '36px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>2.25rem • 36px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>40</div>
+      <div style={{ width: '40px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>2.5rem • 40px</div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: '60px', fontWeight: 'bold', fontSize: '14px' }}>48</div>
+      <div style={{ width: '48px', height: '24px', background: '#0064FF' }} />
+      <div style={{ marginLeft: '12px', fontSize: '14px', color: '#64748b' }}>3rem • 48px</div>
+    </div>
+  </div>
+</div>
+
+### 간격 사용 가이드
+
+각 간격 값은 특정 용도에 최적화되어 있으며, 일관된 사용으로 시각적 계층을 만듭니다.
+
+#### Scale 0 (0px): 간격 없음
+- **언제 사용하나요?** 요소 간 간격을 완전히 제거할 때
+- **사용 예시**: 연결된 버튼 그룹, 인라인 요소
+- **주의사항**: 의도적으로 붙어있어야 하는 경우에만 사용
+
+#### Scale 2 (2px): 극히 작은 간격
+- **언제 사용하나요?** 미세한 시각적 분리가 필요할 때
+- **사용 예시**: 텍스트와 아이콘 사이, 배지 내부
+- **주의사항**: 너무 작아서 모바일에서 인지하기 어려울 수 있음
+
+#### Scale 4 (4px): 최소 간격
+- **언제 사용하나요?** 밀접하게 관련된 요소들 사이
+- **사용 예시**: 라벨과 입력 필드, 체크박스와 텍스트
+- **주의사항**: 터치 타겟 간격으로는 부족할 수 있음
+
+#### Scale 8 (8px): 작은 간격
+- **언제 사용하나요?** 그룹 내 요소 간 기본 간격
+- **사용 예시**: 버튼 내 패딩, 리스트 아이템 간격
+- **주의사항**: 가장 범용적으로 사용되는 작은 단위
+
+#### Scale 12 (12px): 컴팩트 간격
+- **언제 사용하나요?** 콤팩트한 레이아웃 구성 시
+- **사용 예시**: 카드 내부 패딩, 폼 필드 간격
+- **주의사항**: 모바일에서 적절한 최소 패딩
+
+#### Scale 16 (16px): 표준 간격
+- **언제 사용하나요?** 대부분의 요소 간 기본 간격
+- **사용 예시**: 섹션 간격, 기본 패딩, 그리드 갭
+- **주의사항**: 가장 많이 사용되는 표준 단위
+
+#### Scale 20 (20px): 중간 간격
+- **언제 사용하나요?** 적당한 구분이 필요한 요소 간
+- **사용 예시**: 헤더와 콘텐츠 사이, 카드 간격
+- **주의사항**: 16px보다 조금 더 여유 있는 간격
+
+#### Scale 24 (24px): 충분한 간격
+- **언제 사용하나요?** 명확한 시각적 구분이 필요할 때
+- **사용 예시**: 섹션 패딩, 모달 내부 간격
+- **주의사항**: 데스크탑 레이아웃에 적합
+
+#### Scale 32 (32px): 큰 간격
+- **언제 사용하나요?** 주요 섹션 간 구분
+- **사용 예시**: 페이지 섹션 간격, 큰 카드 패딩
+- **주의사항**: 모바일에서는 과도할 수 있음
+
+#### Scale 36 (36px): 넓은 간격
+- **언제 사용하나요?** 특별한 강조가 필요한 구역
+- **사용 예시**: 히어로 섹션 패딩, 특별 공지 영역
+- **주의사항**: 제한적으로 사용
+
+#### Scale 40 (40px): 매우 넓은 간격
+- **언제 사용하나요?** 대형 디스플레이 요소
+- **사용 예시**: 랜딩 페이지 섹션, 대형 배너
+- **주의사항**: 데스크탑 전용 고려
+
+#### Scale 48 (48px): 최대 간격
+- **언제 사용하나요?** 극적인 시각적 분리
+- **사용 예시**: 메인 콘텐츠 영역, 대형 헤더
+- **주의사항**: 특수한 경우에만 사용
+
+## 사용 가이드
+
+### 기본 사용법
+
+```tsx
+// Padding
+<div className={css({ p: '16' })}>
+  전체 패딩 16px
+</div>
+
+// Margin
+<div className={css({ m: '24' })}>
+  전체 마진 24px
+</div>
+
+// Gap (Flexbox/Grid)
+<div className={css({ display: 'flex', gap: '8' })}>
+  요소 간 8px 간격
+</div>
+```
+
+### 방향별 간격
+
+```tsx
+// 개별 방향
+<div className={css({
+  pt: '24',  // padding-top
+  pr: '16',  // padding-right
+  pb: '24',  // padding-bottom
+  pl: '16'   // padding-left
+})}>
+  방향별 패딩
+</div>
+
+// 축 단위
+<div className={css({
+  px: '16',  // padding-left & right
+  py: '24'   // padding-top & bottom
+})}>
+  수평/수직 패딩
+</div>
+
+// 음수 마진
+<div className={css({
+  mt: '-8'  // negative margin-top
+})}>
+  위로 당기기
+</div>
+```
+
+### 반응형 간격
+
+```tsx
+// 화면 크기별 간격
+<div className={css({
+  p: ['16', '24', '32'],
+  // 모바일: 16px, 태블릿: 24px, 데스크탑: 32px
+})}>
+  반응형 패딩
+</div>
+
+// 조건부 간격
+<div className={css({
+  gap: '8',
+  md: { gap: '16' },
+  lg: { gap: '24' }
+})}>
+  브레이크포인트별 간격
+</div>
+```
+
+## 컴포넌트별 가이드
+
+### 버튼 간격
+
+```tsx
+const ButtonSpacing = {
+  // 크기별 패딩
+  sm: { px: '12', py: '8' },
+  md: { px: '16', py: '12' },
+  lg: { px: '24', py: '16' },
+
+  // 아이콘 간격
+  iconGap: '8'
+};
+
+// 사용 예시
+<button className={css({
+  ...ButtonSpacing.md,
+  display: 'flex',
+  gap: ButtonSpacing.iconGap
+})}>
+  <Icon /> 버튼 텍스트
+</button>
+```
+
+### 카드 레이아웃
+
+```tsx
+const Card = ({ children }) => (
+  <div className={css({
+    p: ['16', '20', '24'],  // 반응형 패딩
+    borderRadius: 'lg',
+    bg: 'bg.neutral'
+  })}>
+    {children}
+  </div>
+);
+
+// 카드 그리드
+const CardGrid = ({ cards }) => (
+  <div className={css({
+    display: 'grid',
+    gap: ['16', '20', '24'],  // 반응형 갭
+    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))'
+  })}>
+    {cards.map(card => <Card key={card.id}>{card.content}</Card>)}
+  </div>
+);
+```
+
+### 폼 레이아웃
+
+```tsx
+const FormField = ({ label, input }) => (
+  <div className={css({ mb: '16' })}>
+    <label className={css({
+      display: 'block',
+      mb: '4'  // 라벨과 입력 필드 간격
+    })}>
+      {label}
+    </label>
+    {input}
+  </div>
+);
+
+const Form = ({ fields }) => (
+  <form className={css({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20'  // 필드 그룹 간격
+  })}>
+    {fields}
+  </form>
+);
+```
+
+### 섹션 간격
+
+```tsx
+const Section = ({ title, content }) => (
+  <section className={css({
+    py: ['32', '40', '48'],  // 섹션 수직 패딩
+    px: ['16', '24', '32']   // 섹션 수평 패딩
+  })}>
+    <h2 className={css({ mb: '24' })}>
+      {title}
+    </h2>
+    <div className={css({ space: 'y-16' })}>
+      {content}
+    </div>
+  </section>
+);
+```
+
+## 실전 패턴
+
+### 리스트 간격
+
+```tsx
+// 기본 리스트
+<ul className={css({ space: 'y-8' })}>
+  <li>항목 1</li>
+  <li>항목 2</li>
+  <li>항목 3</li>
+</ul>
+
+// 구분선이 있는 리스트
+<ul className={css({ divide: 'y', divideColor: 'border.neutral' })}>
+  {items.map(item => (
+    <li key={item.id} className={css({ py: '12' })}>
+      {item.content}
+    </li>
+  ))}
+</ul>
+```
+
+### 네비게이션 바
+
+```tsx
+const NavBar = () => (
+  <nav className={css({
+    display: 'flex',
+    alignItems: 'center',
+    px: ['16', '24', '32'],
+    py: '16',
+    gap: '24'
+  })}>
+    <Logo />
+    <div className={css({
+      display: 'flex',
+      gap: '16',
+      ml: 'auto'  // 오른쪽 정렬
+    })}>
+      <NavLink />
+      <NavLink />
+      <NavLink />
+    </div>
+  </nav>
+);
+```
+
+### 모달 간격
+
+```tsx
+const Modal = ({ title, content, actions }) => (
+  <div className={css({
+    p: '24',
+    maxWidth: '500px',
+    bg: 'bg.neutral',
+    borderRadius: 'lg'
+  })}>
+    <h2 className={css({ mb: '16' })}>{title}</h2>
+    <div className={css({ mb: '24' })}>{content}</div>
+    <div className={css({
+      display: 'flex',
+      gap: '12',
+      justifyContent: 'flex-end'
+    })}>
+      {actions}
+    </div>
+  </div>
+);
+```
+
+### 그리드 시스템
+
+```tsx
+// 12 컬럼 그리드
+const Grid = ({ children }) => (
+  <div className={css({
+    display: 'grid',
+    gridTemplateColumns: 'repeat(12, 1fr)',
+    gap: ['16', '20', '24']
+  })}>
+    {children}
+  </div>
+);
+
+// 그리드 아이템
+const GridItem = ({ span = 1, children }) => (
+  <div className={css({
+    gridColumn: `span ${span}`
+  })}>
+    {children}
+  </div>
+);
+```
+
+## 접근성 고려사항
+
+### 터치 타겟 간격
+```tsx
+// 모바일 터치 타겟 최소 간격
+<div className={css({
+  display: 'flex',
+  gap: '8',  // 최소 8px 간격
+  '& > button': {
+    minWidth: '44px',
+    minHeight: '44px'
+  }
+})}>
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+</div>
+```
+
+### 가독성을 위한 간격
+```tsx
+// 텍스트 블록 간격
+<article className={css({
+  '& p': {
+    mb: '16',  // 단락 간격
+    lineHeight: '1.5'
+  },
+  '& h2': {
+    mt: '32',  // 제목 위 간격
+    mb: '16'   // 제목 아래 간격
+  }
+})}>
+  {content}
+</article>
+```
+
+## 모범 사례
+
+### Do
+- 정의된 스케일 내에서 간격 선택
+- 동일 레벨 요소는 동일한 간격 사용
+- 관련 요소는 가깝게, 별개 요소는 멀게 배치
+- 반응형 디자인을 위해 배열 구문 활용
+
+### Don't
+- 임의의 픽셀 값 사용 지양
+- 과도한 간격으로 공간 낭비 피하기
+- 너무 좁은 간격으로 답답함 유발 금지
+- 일관성 없는 간격 혼용 피하기
+
+## 간격 디버깅
+
+### 시각적 디버깅
+```tsx
+// 개발 중 간격 시각화
+const DebugSpacing = ({ children }) => (
+  <div className={css({
+    '& *': {
+      outline: '1px solid red',
+      '&:hover': {
+        background: 'rgba(255,0,0,0.1)'
+      }
+    }
+  })}>
+    {children}
+  </div>
+);
+```
+
+### 간격 검사 도구
+```tsx
+// 브라우저 개발자 도구 활용
+// 1. Elements 탭에서 요소 선택
+// 2. Computed 탭에서 실제 적용된 간격 확인
+// 3. Box Model 시각화로 간격 검토
+```

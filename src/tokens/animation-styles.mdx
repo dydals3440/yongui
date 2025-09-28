@@ -1,0 +1,289 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { animationStyles } from './animation-styles';
+
+<Meta title='Tokens/Animation Styles' />
+
+# Animation Styles
+
+YongUI의 애니메이션 시스템은 일관되고 자연스러운 모션을 제공합니다.
+성능 최적화와 접근성을 고려한 6가지 핵심 애니메이션 스타일을 제공합니다.
+
+## 애니메이션 스타일
+
+### Spin
+끊임없이 회전하는 애니메이션으로 로딩 상태를 표현합니다.
+
+<div style={{ display: 'flex', gap: '32px', alignItems: 'center', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '16px' }}>
+  <div style={{ animation: 'spin 1s linear infinite', display: 'inline-flex' }}>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="10" strokeDasharray="60" strokeDashoffset="15" strokeLinecap="round" />
+    </svg>
+  </div>
+  <div style={{ animation: 'spin 2s linear infinite', display: 'inline-flex' }}>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0064FF" strokeWidth="2">
+      <path d="M21 12a9 9 0 11-6.219-8.56" strokeLinecap="round" />
+    </svg>
+  </div>
+  <div style={{ animation: 'spin 0.8s linear infinite', display: 'inline-flex' }}>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2">
+      <circle cx="12" cy="12" r="10" opacity="0.25" />
+      <circle cx="12" cy="12" r="10" strokeDasharray="60" strokeDashoffset="15" strokeLinecap="round" />
+    </svg>
+  </div>
+</div>
+
+```tsx
+<div className={css({ animationStyle: 'spin' })}>
+  <icons.loader size={24} />
+</div>
+```
+
+### Pulse
+부드럽게 확대/축소를 반복하여 주목을 끕니다.
+
+<div style={{ display: 'flex', gap: '32px', alignItems: 'center', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '16px' }}>
+  <div style={{ position: 'relative', display: 'inline-flex' }}>
+    <div style={{ animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite', width: '12px', height: '12px', backgroundColor: '#ef4444', borderRadius: '50%' }} />
+    <span style={{ marginLeft: '8px' }}>Live</span>
+  </div>
+  <div style={{ animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite', padding: '8px 16px', background: '#0064FF', color: 'white', borderRadius: '6px', display: 'inline-flex', alignItems: 'center' }}>
+    새 알림
+  </div>
+  <div style={{ animation: 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite', width: '48px', height: '48px', background: '#22c55e', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <span style={{ color: 'white', fontSize: '20px' }}>!</span>
+  </div>
+</div>
+
+```tsx
+<span className={css({ animationStyle: 'pulse' })}>
+  <Badge status="live" />
+</span>
+```
+
+### Bounce
+위아래로 튕기는 동작으로 경쾌한 느낌을 전달합니다.
+
+<div style={{ display: 'flex', gap: '32px', alignItems: 'center', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '16px', height: '100px' }}>
+  <div style={{ animation: 'bounce 1s infinite', display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M7 10l5 5 5-5" />
+    </svg>
+    <span style={{ fontSize: '12px', marginTop: '4px' }}>스크롤</span>
+  </div>
+  <div style={{ animation: 'bounce 1.2s infinite', width: '56px', height: '56px', background: '#0064FF', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', boxShadow: '0 4px 14px rgba(0,100,255,0.3)' }}>
+    +
+  </div>
+  <div style={{ animation: 'bounce 0.8s infinite', display: 'inline-flex', padding: '12px 24px', background: '#22c55e', color: 'white', borderRadius: '8px', alignItems: 'center' }}>
+    <span style={{ marginRight: '8px' }}>✓</span> 완료!
+  </div>
+</div>
+
+```tsx
+<button className={css({ animationStyle: 'bounce' })}>
+  <icons.chevronDown />
+</button>
+```
+
+### Fade
+투명도를 조절하여 나타나고 사라지는 효과를 만듭니다.
+
+<div style={{ display: 'flex', gap: '32px', alignItems: 'center', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '16px' }}>
+  <div style={{ animation: 'fadeIn 1.5s ease-in-out infinite alternate', padding: '16px', background: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Fade In/Out</div>
+    <div style={{ fontSize: '14px', color: '#666' }}>부드러운 전환</div>
+  </div>
+  <div style={{ animation: 'fadeIn 1s ease-in-out infinite alternate', padding: '16px', background: '#0064FF', color: 'white', borderRadius: '8px' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>교차 페이드</div>
+    <div style={{ fontSize: '14px' }}>반복 효과</div>
+  </div>
+  <div style={{ animation: 'fadeIn 2s ease-in-out infinite', padding: '8px 16px', background: '#fbbf24', borderRadius: '6px' }}>
+    순환 페이드
+  </div>
+</div>
+
+```tsx
+<div className={css({ animationStyle: 'fadeIn' })}>
+  <Modal />
+</div>
+```
+
+### Slide
+측면에서 부드럽게 들어오거나 나가는 모션입니다.
+
+<div style={{ display: 'flex', gap: '16px', alignItems: 'center', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '16px', overflow: 'hidden' }}>
+  <div style={{ animation: 'slideInRight 2s ease-in-out infinite', padding: '16px', background: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', minWidth: '120px' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>→ Right</div>
+    <div style={{ fontSize: '14px', color: '#666' }}>오른쪽에서</div>
+  </div>
+  <div style={{ animation: 'slideInLeft 2s ease-in-out infinite', animationDelay: '0.3s', padding: '16px', background: '#0064FF', color: 'white', borderRadius: '8px', minWidth: '120px' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>← Left</div>
+    <div style={{ fontSize: '14px' }}>왼쪽에서</div>
+  </div>
+  <div style={{ animation: 'slideInUp 2s ease-in-out infinite', animationDelay: '0.6s', padding: '16px', background: '#22c55e', color: 'white', borderRadius: '8px', minWidth: '120px' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>↑ Up</div>
+    <div style={{ fontSize: '14px' }}>아래에서</div>
+  </div>
+</div>
+
+```tsx
+<nav className={css({ animationStyle: 'slideInRight' })}>
+  <Sidebar />
+</nav>
+```
+
+### Scale
+크기를 변경하여 나타나거나 사라지는 효과입니다.
+
+<div style={{ display: 'flex', gap: '32px', alignItems: 'center', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '16px' }}>
+  <div style={{ animation: 'scaleUp 1.5s ease-in-out infinite', padding: '16px', background: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', transformOrigin: 'center' }}>
+    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>Scale Up</div>
+    <div style={{ fontSize: '14px', color: '#666' }}>확대 효과</div>
+  </div>
+  <div style={{ animation: 'scaleUp 1s ease-out infinite alternate', padding: '12px', background: '#0064FF', color: 'white', borderRadius: '50%', width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', transformOrigin: 'center' }}>
+    <span style={{ fontSize: '24px' }}>+</span>
+  </div>
+  <div style={{ animation: 'scaleDown 1.2s ease-in infinite alternate', animationDelay: '0.2s', padding: '8px 16px', background: '#ef4444', color: 'white', borderRadius: '6px' }}>
+    Pop!
+  </div>
+</div>
+
+```tsx
+<div className={css({ animationStyle: 'scaleUp' })}>
+  <Dropdown />
+</div>
+```
+
+## 사용 가이드
+
+### 기본 사용법
+```tsx
+// 단일 애니메이션
+<div className={css({ animationStyle: 'spin' })}>
+  로딩 중...
+</div>
+
+// 조건부 애니메이션
+<div className={css({
+  animationStyle: isLoading ? 'pulse' : undefined
+})}>
+  상태 표시
+</div>
+```
+
+### 커스텀 타이밍
+```tsx
+// 애니메이션 속도 조절
+<div className={css({
+  animationStyle: 'fadeIn',
+  animationDuration: '0.5s'
+})}>
+  느린 페이드
+</div>
+
+// 순차적 애니메이션
+{items.map((item, index) => (
+  <li className={css({
+    animationStyle: 'fadeIn',
+    animationDelay: `${index * 0.1}s`
+  })}>
+    {item}
+  </li>
+))}
+```
+
+## 성능 최적화
+
+### GPU 가속
+```tsx
+// will-change 사용
+<div className={css({
+  willChange: 'transform',
+  animationStyle: 'scaleUp'
+})}>
+  최적화된 애니메이션
+</div>
+```
+
+### 접근성
+```tsx
+// 모션 설정 존중
+<div className={css({
+  animationStyle: 'bounce',
+  '@media (prefers-reduced-motion: reduce)': {
+    animationStyle: 'none'
+  }
+})}>
+  접근성 고려
+</div>
+
+// ARIA 속성
+<div
+  className={css({ animationStyle: 'spin' })}
+  role="status"
+  aria-live="polite"
+  aria-label="로딩 중"
+>
+  <Spinner />
+</div>
+```
+
+## 실제 구현 예시
+
+### 로딩 버튼
+```tsx
+const LoadingButton = ({ loading, children, ...props }) => (
+  <Button {...props}>
+    {loading ? (
+      <span className={css({ animationStyle: 'spin' })}>
+        <icons.loader size={16} />
+      </span>
+    ) : children}
+  </Button>
+);
+```
+
+### 알림 뱃지
+```tsx
+const NotificationBadge = ({ count, hasNew }) => (
+  <div className={css({ position: 'relative' })}>
+    <icons.bell size={24} />
+    {hasNew && (
+      <span className={css({
+        animationStyle: 'pulse',
+        position: 'absolute',
+        top: '-4px',
+        right: '-4px',
+        width: '8px',
+        height: '8px',
+        borderRadius: '50%',
+        bg: 'bgSolid.danger'
+      })} />
+    )}
+  </div>
+);
+```
+
+## 애니메이션 속성
+
+| 스타일 | 지속 시간 | 용도 | 성능 |
+|:-------|:----------|:-----|:-----|
+| **spin** | 1s (반복) | 로딩 표시 | 최적 |
+| **pulse** | 2s (반복) | 주목 유도 | 최적 |
+| **bounce** | 1s (반복) | 강조, 유도 | 양호 |
+| **fadeIn/Out** | 0.3s | 전환 효과 | 최적 |
+| **slideIn/Out** | 0.3s | 패널 이동 | 양호 |
+| **scaleUp/Down** | 0.2s | 팝업 효과 | 최적 |
+
+## 모범 사례
+
+### Do
+- 목적에 맞는 애니메이션 선택
+- 일관된 타이밍 유지
+- 성능 모니터링
+- 피드백 제공
+
+### Don't
+- 과도한 사용
+- 0.3초 이상의 긴 전환
+- 무의미한 모션
+- 강제 애니메이션
