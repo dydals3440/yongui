@@ -14,7 +14,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
-    "prepare": "panda codegen"
+    "prepare": "panda codegen",
+    "chromatic": "npx chromatic --project-token=chpt_3ee9835c647d7fe"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.3.3",

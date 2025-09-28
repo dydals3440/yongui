@@ -21,7 +21,7 @@ export default {
   argTypes: {
     children: {
       control: 'text',
-      description: '버튼 텍스트',
+      description: '버튼의 텍스트',
     },
     variant: {
       control: 'select',

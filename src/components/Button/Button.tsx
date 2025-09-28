@@ -34,7 +34,13 @@ export interface ButtonProps
  * - `disabled` 속성을 사용하여 버튼을 비활성화할 수 있습니다.
  * - `loading` 속성을 사용하여 로딩 상태를 표시할 수 있습니다. 로딩 중일 때는 자동으로 비활성화됩니다.
  */
-const Spinner = ({ size, variant }: { size: ButtonSize; variant: ButtonVariant }) => {
+const Spinner = ({
+  size,
+  variant,
+}: {
+  size: ButtonSize;
+  variant: ButtonVariant;
+}) => {
   const spinnerSize = {
     sm: '14',
     md: '16',
@@ -45,7 +51,7 @@ const Spinner = ({ size, variant }: { size: ButtonSize; variant: ButtonVariant }
     <svg
       className={css({
         animationStyle: 'spin',
-        color: variant === 'outline' ? 'fg.neutral.placeholder' : 'white'
+        color: variant === 'outline' ? 'fg.neutral.placeholder' : 'white',
       })}
       width={spinnerSize}
       height={spinnerSize}
