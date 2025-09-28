@@ -1,0 +1,32 @@
+name: "Chromatic 🎨"
+
+on: push
+
+jobs:
+    pre-chromatic:
+        runs-on: ubuntu-latest
+        steps:
+            - id: gen_url
+              run: |
+                  # Use commit hash instead of branch name to avoid 37-character limit
+                  URL=https://${{ github.sha }}--68d9044397ede4bc9c70596a.chromatic.com
+                  echo "url=$URL" >> $GITHUB_OUTPUT
+        outputs:
+            url: ${{ steps.gen_url.outputs.url }}
+
+    chromatic:
+        environment:
+            name: Chromatic
+            url: ${{ needs.pre-chromatic.outputs.url }}
+        runs-on: ubuntu-latest
+        needs: pre-chromatic
+        steps:
+            - uses: actions/checkout@v5
+              with:
+                  fetch-depth: 0
+            - uses: oven-sh/setup-bun@v2
+            - run: bun install
+            - uses: chromaui/action@latest
+              with:
+                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+                  onlyChanged: true
