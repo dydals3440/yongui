@@ -1,17 +1,17 @@
-import type React from 'react';
-import type { HTMLAttributes } from 'react';
-import type { Tone } from '../../tokens/colors';
-import { cva, css } from '../../../styled-system/css';
+import type React from "react";
+import type { HTMLAttributes } from "react";
+import { css, cva } from "../../../styled-system/css";
+import type { Tone } from "../../tokens/colors";
 
-type ButtonVariant = 'solid' | 'outline';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonVariant = "solid" | "outline";
+type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps
-  extends Omit<HTMLAttributes<HTMLElement>, 'style'> {
+  extends Omit<HTMLAttributes<HTMLElement>, "style"> {
   /** 텍스트 */
   children: React.ReactNode;
   /** 타입 */
-  type?: 'button' | 'submit';
+  type?: "button" | "submit";
   /** 클릭 시 실행함수 */
   onClick?: () => void;
   /** 종류 */
@@ -42,32 +42,33 @@ const Spinner = ({
   variant: ButtonVariant;
 }) => {
   const spinnerSize = {
-    sm: '14',
-    md: '16',
-    lg: '20',
+    sm: "14",
+    md: "16",
+    lg: "20",
   }[size];
 
   return (
     <svg
       className={css({
-        animationStyle: 'spin',
-        color: variant === 'outline' ? 'fg.neutral.placeholder' : 'white',
+        animationStyle: "spin",
+        color: variant === "outline" ? "fg.neutral.placeholder" : "white",
       })}
       width={spinnerSize}
       height={spinnerSize}
-      viewBox='0 0 24 24'
-      fill='none'
-      aria-label='로딩 중'
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-label="로딩 중"
+      role="img"
     >
       <circle
-        cx='12'
-        cy='12'
-        r='10'
-        stroke='currentColor'
-        strokeWidth='3'
-        strokeLinecap='round'
-        strokeDasharray='60'
-        strokeDashoffset='15'
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeDasharray="60"
+        strokeDashoffset="15"
       />
     </svg>
   );
@@ -75,11 +76,11 @@ const Spinner = ({
 
 export const Button = ({
   children,
-  type = 'button',
+  type = "button",
   onClick,
-  variant = 'solid',
-  tone = 'brand',
-  size = 'md',
+  variant = "solid",
+  tone = "brand",
+  size = "md",
   disabled,
   loading,
   ...rest
@@ -99,45 +100,45 @@ export const Button = ({
 
 const styles = cva({
   base: {
-    appearance: 'none',
-    margin: '0',
+    appearance: "none",
+    margin: "0",
     fontWeight: 500,
-    textAlign: 'center',
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: ['auto', '100%'],
-    borderRadius: 'md',
-    cursor: 'pointer',
-    transition: '0.2s',
-    lineHeight: '1',
-    outline: '0',
-    '&:disabled': {
-      cursor: 'not-allowed',
+    textAlign: "center",
+    textDecoration: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: ["auto", "100%"],
+    borderRadius: "md",
+    cursor: "pointer",
+    transition: "0.2s",
+    lineHeight: "1",
+    outline: "0",
+    "&:disabled": {
+      cursor: "not-allowed",
     },
-    '&:focus-visible': {
-      outline: 'neutral',
-      outlineWidth: 'lg',
-      outlineOffset: '2',
+    "&:focus-visible": {
+      outline: "neutral",
+      outlineWidth: "lg",
+      outlineOffset: "2",
     },
   },
   variants: {
     size: {
       sm: {
-        px: '24',
-        py: '8',
-        fontSize: 'sm',
+        px: "24",
+        py: "8",
+        fontSize: "sm",
       },
       md: {
-        px: '32',
-        py: '12',
-        fontSize: 'md',
+        px: "32",
+        py: "12",
+        fontSize: "md",
       },
       lg: {
-        px: '40',
-        py: '16',
-        fontSize: 'lg',
+        px: "40",
+        py: "16",
+        fontSize: "lg",
       },
     },
     variant: {
@@ -164,383 +165,383 @@ const styles = cva({
   compoundVariants: [
     // Solid Variants
     {
-      variant: 'solid',
-      tone: 'brand',
+      variant: "solid",
+      tone: "brand",
       css: {
-        bg: 'bgSolid.brand',
-        color: 'fgSolid.brand',
-        '&:hover': {
-          bg: 'bgSolid.brand.hover',
+        bg: "bgSolid.brand",
+        color: "fgSolid.brand",
+        "&:hover": {
+          bg: "bgSolid.brand.hover",
         },
-        '&:active': {
-          bg: 'bgSolid.brand.active',
+        "&:active": {
+          bg: "bgSolid.brand.active",
         },
-        '&:disabled': {
-          bg: 'bg.brand.disabled!',
-          color: 'fg.neutral.disabled',
-          '&:hover': {
-            bg: 'bg.brand.disabled!',
-            color: 'fg.neutral.disabled',
+        "&:disabled": {
+          bg: "bg.brand.disabled!",
+          color: "fg.neutral.disabled",
+          "&:hover": {
+            bg: "bg.brand.disabled!",
+            color: "fg.neutral.disabled",
           },
         },
       },
     },
     {
-      variant: 'solid',
-      tone: 'neutral',
+      variant: "solid",
+      tone: "neutral",
       css: {
-        bg: 'bgSolid.neutral',
-        color: 'fgSolid.neutral',
-        '&:hover': {
-          bg: 'bgSolid.neutral.hover',
+        bg: "bgSolid.neutral",
+        color: "fgSolid.neutral",
+        "&:hover": {
+          bg: "bgSolid.neutral.hover",
         },
-        '&:active': {
-          bg: 'bgSolid.neutral.active',
+        "&:active": {
+          bg: "bgSolid.neutral.active",
         },
-        '&:disabled': {
-          bg: 'bg.neutral.disabled!',
-          color: 'fg.neutral.disabled',
-          '&:hover': {
-            bg: 'bg.neutral.disabled!',
-            color: 'fg.neutral.disabled',
+        "&:disabled": {
+          bg: "bg.neutral.disabled!",
+          color: "fg.neutral.disabled",
+          "&:hover": {
+            bg: "bg.neutral.disabled!",
+            color: "fg.neutral.disabled",
           },
         },
       },
     },
     {
-      variant: 'solid',
-      tone: 'danger',
+      variant: "solid",
+      tone: "danger",
       css: {
-        bg: 'bgSolid.danger',
-        color: 'fgSolid.danger',
-        '&:hover': {
-          bg: 'bgSolid.danger.hover',
+        bg: "bgSolid.danger",
+        color: "fgSolid.danger",
+        "&:hover": {
+          bg: "bgSolid.danger.hover",
         },
-        '&:active': {
-          bg: 'bgSolid.danger.active',
+        "&:active": {
+          bg: "bgSolid.danger.active",
         },
-        '&:disabled': {
-          bg: 'bg.danger.disabled!',
-          color: 'fg.neutral.disabled',
-          '&:hover': {
-            bg: 'bg.danger.disabled!',
-            color: 'fg.neutral.disabled',
+        "&:disabled": {
+          bg: "bg.danger.disabled!",
+          color: "fg.neutral.disabled",
+          "&:hover": {
+            bg: "bg.danger.disabled!",
+            color: "fg.neutral.disabled",
           },
         },
       },
     },
     {
-      variant: 'solid',
-      tone: 'success',
+      variant: "solid",
+      tone: "success",
       css: {
-        bg: 'bgSolid.success',
-        color: 'fgSolid.success',
-        '&:hover': {
-          bg: 'bgSolid.success.hover',
+        bg: "bgSolid.success",
+        color: "fgSolid.success",
+        "&:hover": {
+          bg: "bgSolid.success.hover",
         },
-        '&:active': {
-          bg: 'bgSolid.success.active',
+        "&:active": {
+          bg: "bgSolid.success.active",
         },
-        '&:disabled': {
-          bg: 'bg.success.disabled!',
-          color: 'fg.neutral.disabled',
-          '&:hover': {
-            bg: 'bg.success.disabled!',
-            color: 'fg.neutral.disabled',
+        "&:disabled": {
+          bg: "bg.success.disabled!",
+          color: "fg.neutral.disabled",
+          "&:hover": {
+            bg: "bg.success.disabled!",
+            color: "fg.neutral.disabled",
           },
         },
       },
     },
     {
-      variant: 'solid',
-      tone: 'warning',
+      variant: "solid",
+      tone: "warning",
       css: {
-        bg: 'bgSolid.warning',
-        color: 'fgSolid.warning',
-        '&:hover': {
-          bg: 'bgSolid.warning.hover',
+        bg: "bgSolid.warning",
+        color: "fgSolid.warning",
+        "&:hover": {
+          bg: "bgSolid.warning.hover",
         },
-        '&:active': {
-          bg: 'bgSolid.warning.active',
+        "&:active": {
+          bg: "bgSolid.warning.active",
         },
-        '&:disabled': {
-          bg: 'bg.warning.disabled!',
-          color: 'fg.neutral.disabled',
-          '&:hover': {
-            bg: 'bg.warning.disabled!',
-            color: 'fg.neutral.disabled',
+        "&:disabled": {
+          bg: "bg.warning.disabled!",
+          color: "fg.neutral.disabled",
+          "&:hover": {
+            bg: "bg.warning.disabled!",
+            color: "fg.neutral.disabled",
           },
         },
       },
     },
     {
-      variant: 'solid',
-      tone: 'info',
+      variant: "solid",
+      tone: "info",
       css: {
-        bg: 'bgSolid.info',
-        color: 'fgSolid.info',
-        '&:hover': {
-          bg: 'bgSolid.info.hover',
+        bg: "bgSolid.info",
+        color: "fgSolid.info",
+        "&:hover": {
+          bg: "bgSolid.info.hover",
         },
-        '&:active': {
-          bg: 'bgSolid.info.active',
+        "&:active": {
+          bg: "bgSolid.info.active",
         },
-        '&:disabled': {
-          bg: 'bg.info.disabled!',
-          color: 'fg.neutral.disabled',
-          '&:hover': {
-            bg: 'bg.info.disabled!',
-            color: 'fg.neutral.disabled',
+        "&:disabled": {
+          bg: "bg.info.disabled!",
+          color: "fg.neutral.disabled",
+          "&:hover": {
+            bg: "bg.info.disabled!",
+            color: "fg.neutral.disabled",
           },
         },
       },
     },
     // Outline Variants
     {
-      variant: 'outline',
-      tone: 'brand',
+      variant: "outline",
+      tone: "brand",
       css: {
-        border: 'brand',
-        borderWidth: 'lg',
-        color: 'fg.brand',
-        '&:hover': {
-          bg: 'bg.brand.hover',
-          color: 'fg.brand.hover',
+        border: "brand",
+        borderWidth: "lg",
+        color: "fg.brand",
+        "&:hover": {
+          bg: "bg.brand.hover",
+          color: "fg.brand.hover",
         },
-        '&:active': {
-          bg: 'bg.brand.active',
-          color: 'fg.brand.active',
+        "&:active": {
+          bg: "bg.brand.active",
+          color: "fg.brand.active",
         },
-        '&:disabled': {
-          borderColor: 'border.neutral.disabled',
-          color: 'fg.neutral.disabled',
-          bg: 'transparent',
-          '&:hover': {
-            borderColor: 'border.neutral.disabled',
-            color: 'fg.neutral.disabled',
-            bg: 'transparent',
+        "&:disabled": {
+          borderColor: "border.neutral.disabled",
+          color: "fg.neutral.disabled",
+          bg: "transparent",
+          "&:hover": {
+            borderColor: "border.neutral.disabled",
+            color: "fg.neutral.disabled",
+            bg: "transparent",
           },
         },
       },
     },
     {
-      variant: 'outline',
-      tone: 'neutral',
+      variant: "outline",
+      tone: "neutral",
       css: {
-        border: 'neutral',
-        borderWidth: 'lg',
-        color: 'fg.neutral',
-        '&:hover': {
-          bg: 'bg.neutral.hover',
-          color: 'fg.neutral.hover',
-          borderColor: 'border.neutral.hover',
+        border: "neutral",
+        borderWidth: "lg",
+        color: "fg.neutral",
+        "&:hover": {
+          bg: "bg.neutral.hover",
+          color: "fg.neutral.hover",
+          borderColor: "border.neutral.hover",
         },
-        '&:active': {
-          bg: 'bg.neutral.active',
-          color: 'fg.neutral.active',
-          borderColor: 'border.neutral.active',
+        "&:active": {
+          bg: "bg.neutral.active",
+          color: "fg.neutral.active",
+          borderColor: "border.neutral.active",
         },
-        '&:disabled': {
-          borderColor: 'border.neutral.disabled',
-          color: 'fg.neutral.disabled',
-          bg: 'transparent',
-          '&:hover': {
-            borderColor: 'border.neutral.disabled',
-            color: 'fg.neutral.disabled',
-            bg: 'transparent',
+        "&:disabled": {
+          borderColor: "border.neutral.disabled",
+          color: "fg.neutral.disabled",
+          bg: "transparent",
+          "&:hover": {
+            borderColor: "border.neutral.disabled",
+            color: "fg.neutral.disabled",
+            bg: "transparent",
           },
         },
       },
     },
     {
-      variant: 'outline',
-      tone: 'danger',
+      variant: "outline",
+      tone: "danger",
       css: {
-        border: 'danger',
-        borderWidth: 'lg',
-        color: 'fg.danger',
-        '&:hover': {
-          bg: 'bg.danger.hover',
+        border: "danger",
+        borderWidth: "lg",
+        color: "fg.danger",
+        "&:hover": {
+          bg: "bg.danger.hover",
         },
-        '&:active': {
-          bg: 'bg.danger.active',
+        "&:active": {
+          bg: "bg.danger.active",
         },
-        '&:disabled': {
-          borderColor: 'border.neutral.disabled',
-          color: 'fg.neutral.disabled',
-          bg: 'transparent',
-          '&:hover': {
-            borderColor: 'border.neutral.disabled',
-            color: 'fg.neutral.disabled',
-            bg: 'transparent',
+        "&:disabled": {
+          borderColor: "border.neutral.disabled",
+          color: "fg.neutral.disabled",
+          bg: "transparent",
+          "&:hover": {
+            borderColor: "border.neutral.disabled",
+            color: "fg.neutral.disabled",
+            bg: "transparent",
           },
         },
       },
     },
     {
-      variant: 'outline',
-      tone: 'success',
+      variant: "outline",
+      tone: "success",
       css: {
-        border: 'success',
-        borderWidth: 'lg',
-        color: 'fg.success',
-        '&:hover': {
-          bg: 'bg.success.hover',
+        border: "success",
+        borderWidth: "lg",
+        color: "fg.success",
+        "&:hover": {
+          bg: "bg.success.hover",
         },
-        '&:active': {
-          bg: 'bg.success.active',
+        "&:active": {
+          bg: "bg.success.active",
         },
-        '&:disabled': {
-          borderColor: 'border.neutral.disabled',
-          color: 'fg.neutral.disabled',
-          bg: 'transparent',
-          '&:hover': {
-            borderColor: 'border.neutral.disabled',
-            color: 'fg.neutral.disabled',
-            bg: 'transparent',
+        "&:disabled": {
+          borderColor: "border.neutral.disabled",
+          color: "fg.neutral.disabled",
+          bg: "transparent",
+          "&:hover": {
+            borderColor: "border.neutral.disabled",
+            color: "fg.neutral.disabled",
+            bg: "transparent",
           },
         },
       },
     },
     {
-      variant: 'outline',
-      tone: 'warning',
+      variant: "outline",
+      tone: "warning",
       css: {
-        border: 'warning',
-        borderWidth: 'lg',
-        color: 'fg.warning',
-        '&:hover': {
-          bg: 'bg.warning.hover',
+        border: "warning",
+        borderWidth: "lg",
+        color: "fg.warning",
+        "&:hover": {
+          bg: "bg.warning.hover",
         },
-        '&:active': {
-          bg: 'bg.warning.active',
+        "&:active": {
+          bg: "bg.warning.active",
         },
-        '&:disabled': {
-          borderColor: 'border.neutral.disabled',
-          color: 'fg.neutral.disabled',
-          bg: 'transparent',
-          '&:hover': {
-            borderColor: 'border.neutral.disabled',
-            color: 'fg.neutral.disabled',
-            bg: 'transparent',
+        "&:disabled": {
+          borderColor: "border.neutral.disabled",
+          color: "fg.neutral.disabled",
+          bg: "transparent",
+          "&:hover": {
+            borderColor: "border.neutral.disabled",
+            color: "fg.neutral.disabled",
+            bg: "transparent",
           },
         },
       },
     },
     {
-      variant: 'outline',
-      tone: 'info',
+      variant: "outline",
+      tone: "info",
       css: {
-        border: 'info',
-        borderWidth: 'lg',
-        color: 'fg.info',
-        '&:hover': {
-          bg: 'bg.info.hover',
+        border: "info",
+        borderWidth: "lg",
+        color: "fg.info",
+        "&:hover": {
+          bg: "bg.info.hover",
         },
-        '&:active': {
-          bg: 'bg.info.active',
+        "&:active": {
+          bg: "bg.info.active",
         },
-        '&:disabled': {
-          borderColor: 'border.neutral.disabled',
-          color: 'fg.neutral.disabled',
-          bg: 'transparent',
-          '&:hover': {
-            borderColor: 'border.neutral.disabled',
-            color: 'fg.neutral.disabled',
-            bg: 'transparent',
+        "&:disabled": {
+          borderColor: "border.neutral.disabled",
+          color: "fg.neutral.disabled",
+          bg: "transparent",
+          "&:hover": {
+            borderColor: "border.neutral.disabled",
+            color: "fg.neutral.disabled",
+            bg: "transparent",
           },
         },
       },
     },
     // Loading States - use disabled colors when loading
     {
-      variant: 'solid',
+      variant: "solid",
       loading: true,
       disabled: true,
-      tone: 'brand',
+      tone: "brand",
       css: {
-        bg: 'bg.brand.disabled!',
-        color: 'fg.neutral.disabled',
+        bg: "bg.brand.disabled!",
+        color: "fg.neutral.disabled",
       },
     },
     {
-      variant: 'solid',
+      variant: "solid",
       loading: true,
       disabled: true,
-      tone: 'neutral',
+      tone: "neutral",
       css: {
-        bg: 'bg.neutral.disabled!',
-        color: 'fg.neutral.disabled',
+        bg: "bg.neutral.disabled!",
+        color: "fg.neutral.disabled",
       },
     },
     {
-      variant: 'solid',
+      variant: "solid",
       loading: true,
       disabled: true,
-      tone: 'danger',
+      tone: "danger",
       css: {
-        bg: 'bg.danger.disabled!',
-        color: 'fg.neutral.disabled',
+        bg: "bg.danger.disabled!",
+        color: "fg.neutral.disabled",
       },
     },
     {
-      variant: 'solid',
+      variant: "solid",
       loading: true,
       disabled: true,
-      tone: 'success',
+      tone: "success",
       css: {
-        bg: 'bg.success.disabled!',
-        color: 'fg.neutral.disabled',
+        bg: "bg.success.disabled!",
+        color: "fg.neutral.disabled",
       },
     },
     {
-      variant: 'solid',
+      variant: "solid",
       loading: true,
       disabled: true,
-      tone: 'warning',
+      tone: "warning",
       css: {
-        bg: 'bg.warning.disabled!',
-        color: 'fg.neutral.disabled',
+        bg: "bg.warning.disabled!",
+        color: "fg.neutral.disabled",
       },
     },
     {
-      variant: 'solid',
+      variant: "solid",
       loading: true,
       disabled: true,
-      tone: 'info',
+      tone: "info",
       css: {
-        bg: 'bg.info.disabled!',
-        color: 'fg.neutral.disabled',
+        bg: "bg.info.disabled!",
+        color: "fg.neutral.disabled",
       },
     },
     {
-      variant: 'outline',
+      variant: "outline",
       loading: true,
       disabled: true,
       css: {
-        borderColor: 'border.neutral.disabled',
-        color: 'fg.neutral.disabled',
-        bg: 'transparent',
+        borderColor: "border.neutral.disabled",
+        color: "fg.neutral.disabled",
+        bg: "transparent",
       },
     },
     // Disabled States
     {
-      variant: 'solid',
+      variant: "solid",
       disabled: true,
       loading: false,
       css: {
-        bg: 'bg.neutral.disabled!',
-        color: 'fg.neutral.disabled',
+        bg: "bg.neutral.disabled!",
+        color: "fg.neutral.disabled",
       },
     },
     {
-      variant: 'outline',
+      variant: "outline",
       disabled: true,
       loading: false,
       css: {
-        bg: 'transparent',
-        color: 'fg.neutral.disabled',
-        borderColor: 'border.neutral.disabled',
+        bg: "transparent",
+        color: "fg.neutral.disabled",
+        borderColor: "border.neutral.disabled",
       },
     },
   ],

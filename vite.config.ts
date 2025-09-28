@@ -1,16 +1,17 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
+
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import svgr from "vite-plugin-svgr";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
   test: {
-    environment: 'happy-dom',
-    setupFiles: ['./src/setupTests.tsx'],
+    environment: "happy-dom",
+    setupFiles: ["./src/setupTests.tsx"],
   },
   optimizeDeps: {
-    exclude: ['node_modules/.cache/storybook'],
+    exclude: ["node_modules/.cache/storybook"],
   },
 });

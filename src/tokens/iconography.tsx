@@ -22,13 +22,13 @@ import {
   ThumbsUp,
   User,
   X,
-} from 'lucide-react';
-import type { FunctionComponent, ComponentProps, SVGProps } from 'react';
-import LinkedIn from '../assets/LinkedIn.svg?react';
+} from "lucide-react";
+import type { ComponentProps, FunctionComponent, SVGProps } from "react";
+import LinkedIn from "../assets/LinkedIn.svg?react";
 
 function createBrandIcon(Icon: FunctionComponent<SVGProps<SVGSVGElement>>) {
   return (args: ComponentProps<typeof Icon>) => (
-    <Icon {...args} fill='currentColor' />
+    <Icon {...args} fill="currentColor" />
   );
 }
 
