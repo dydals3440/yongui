@@ -3,30 +3,51 @@ name: "Chromatic Deploy"
 on: push
 
 jobs:
-  pre-chromatic:
+  build-chromatic:
     runs-on: ubuntu-latest
-    steps:
-      - id: gen_url
-        run: |
-          # Use commit hash instead of branch name to avoid 37-character limit
-          URL=https://${{ github.sha }}--68d9044397ede4bc9c70596a.chromatic.com
-          echo "url=$URL" >> $GITHUB_OUTPUT
     outputs:
-      url: ${{ steps.gen_url.outputs.url }}
+      # chromaui/action이 반환하는 실제 배포 URL
+      storybook_url: ${{ steps.chromatic.outputs.storybookUrl }}
+      # 최종적으로 환경에 등록할 URL (chromatic_url or fallback_url)
+      final_url: ${{ steps.final.outputs.final_url }}
 
-  chromatic:
-    environment:
-      name: Chromatic
-      url: ${{ needs.pre-chromatic.outputs.url }}
-    runs-on: ubuntu-latest
-    needs: pre-chromatic
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+
       - uses: oven-sh/setup-bun@v2
       - run: bun install
-      - uses: chromaui/action@latest
+
+      - id: chromatic
+        uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          onlyChanged: true
+          onlyChanged: true # 변경 없을 때 빌드 스킵될 수 있음
+
+      # fallback URL: 커밋 SHA 기반 퍼머링크 (예시의 appId 그대로 사용)
+      - id: fallback
+        run: |
+          echo "url=https://${GITHUB_SHA}--68d9044397ede4bc9c70596a.chromatic.com" >> "$GITHUB_OUTPUT"
+
+      # chromatic 출력이 있으면 그걸, 없으면 fallback을 사용
+      - id: final
+        run: |
+          if [ -n "${{ steps.chromatic.outputs.storybookUrl }}" ]; then
+            echo "final_url=${{ steps.chromatic.outputs.storybookUrl }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "final_url=${{ steps.fallback.outputs.url }}" >> "$GITHUB_OUTPUT"
+          fi
+
+  register-deployment:
+    needs: build-chromatic
+    runs-on: ubuntu-latest
+    # 여기서 Environment URL을 등록하면 GitHub이 deployment/deployment_status 이벤트를 발생시킵니다.
+    environment:
+      name: Chromatic
+      url: ${{ needs.build-chromatic.outputs.final_url }}
+
+    steps:
+      - run: |
+          echo "Registered deployment URL:"
+          echo "${{ needs.build-chromatic.outputs.final_url }}"
