@@ -1,7 +1,7 @@
 import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
 import { icons } from './iconography';
 
-<Meta title='Tokens/Iconography' />
+<Meta title="Tokens/Iconography" />
 
 # Iconography
 
@@ -47,7 +47,7 @@ import { icons } from '@/tokens/icongraphy';
 
 function MyComponent() {
   const CheckIcon = icons.check;
-  return <CheckIcon size={24} color='green' />;
+  return <CheckIcon size={24} color="green" />;
 }
 ```
 
@@ -65,8 +65,8 @@ function DynamicIcon({ name }: { name: IconName }) {
 ### 버튼과 함께 사용
 
 ```tsx
-<Button variant='solid' tone='brand'>
-  <icons.check size={16} aria-hidden='true' />
+<Button variant="solid" tone="brand">
+  <icons.check size={16} aria-hidden="true" />
   저장하기
 </Button>
 ```
@@ -145,7 +145,7 @@ function DynamicIcon({ name }: { name: IconName }) {
 
 ```tsx
 <div>
-  <icons.info size={20} aria-hidden='true' />
+  <icons.info size={20} aria-hidden="true" />
   <span>추가 정보가 있습니다</span>
 </div>
 ```

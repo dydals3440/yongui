@@ -1,69 +1,69 @@
-import { defineAnimationStyles } from '@pandacss/dev';
+import { defineAnimationStyles } from "@pandacss/dev";
 
 export const animationStyles = defineAnimationStyles({
   spin: {
     value: {
-      animation: 'spin 1s linear infinite',
+      animation: "spin 1s linear infinite",
     },
   },
-  'spin-fast': {
+  "spin-fast": {
     value: {
-      animation: 'spin 0.5s linear infinite',
+      animation: "spin 0.5s linear infinite",
     },
   },
-  'spin-slow': {
+  "spin-slow": {
     value: {
-      animation: 'spin 2s linear infinite',
+      animation: "spin 2s linear infinite",
     },
   },
   pulse: {
     value: {
-      animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
     },
   },
   bounce: {
     value: {
-      animation: 'bounce 1s infinite',
+      animation: "bounce 1s infinite",
     },
   },
-  'fade-in': {
+  "fade-in": {
     value: {
-      animation: 'fade-in 0.2s ease-out',
+      animation: "fade-in 0.2s ease-out",
     },
   },
-  'fade-out': {
+  "fade-out": {
     value: {
-      animation: 'fade-out 0.2s ease-in',
+      animation: "fade-out 0.2s ease-in",
     },
   },
-  'slide-from-top': {
+  "slide-from-top": {
     value: {
-      animation: 'slide-from-top 0.3s ease-out',
+      animation: "slide-from-top 0.3s ease-out",
     },
   },
-  'slide-from-bottom': {
+  "slide-from-bottom": {
     value: {
-      animation: 'slide-from-bottom 0.3s ease-out',
+      animation: "slide-from-bottom 0.3s ease-out",
     },
   },
-  'slide-from-left': {
+  "slide-from-left": {
     value: {
-      animation: 'slide-from-left 0.3s ease-out',
+      animation: "slide-from-left 0.3s ease-out",
     },
   },
-  'slide-from-right': {
+  "slide-from-right": {
     value: {
-      animation: 'slide-from-right 0.3s ease-out',
+      animation: "slide-from-right 0.3s ease-out",
     },
   },
-  'scale-in': {
+  "scale-in": {
     value: {
-      animation: 'scale-in 0.2s ease-out',
+      animation: "scale-in 0.2s ease-out",
     },
   },
-  'scale-out': {
+  "scale-out": {
     value: {
-      animation: 'scale-out 0.2s ease-in',
+      animation: "scale-out 0.2s ease-in",
     },
   },
 });
