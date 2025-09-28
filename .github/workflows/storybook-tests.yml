@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 60
         # 환경 이름 대소문자 차이를 흡수하고, 성공 상태만 테스트
-        if: toLower(github.event.deployment_status.environment) == 'chromatic' && github.event.deployment_status.state == 'success'
+        if: github.event.deployment_status.environment == 'Chromatic' && github.event.deployment_status.state == 'success'
 
         steps:
             - uses: actions/checkout@v5
