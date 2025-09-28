@@ -23,7 +23,7 @@ export const semanticColors: SemanticTokens["colors"] = {
       value: { base: "{colors.white}", _dark: "{colors.white}" },
     },
     warning: {
-      value: { base: "{colors.white}", _dark: "{colors.white}" },
+      value: { base: "{colors.amber.12}", _dark: "{colors.white}" },
     },
     danger: { value: { base: "{colors.white}", _dark: "{colors.white}" } },
     info: { value: { base: "{colors.white}", _dark: "{colors.white}" } },
@@ -200,13 +200,13 @@ export const semanticColors: SemanticTokens["colors"] = {
     },
     warning: {
       DEFAULT: {
-        value: { base: "{colors.amber.9}", _dark: "{colors.darkAmber.10}" },
+        value: { base: "{colors.amber.10}", _dark: "{colors.darkAmber.10}" },
       },
       hover: {
-        value: { base: "{colors.amber.10}", _dark: "{colors.darkAmber.11}" },
+        value: { base: "{colors.amber.11}", _dark: "{colors.darkAmber.11}" },
       },
       active: {
-        value: { base: "{colors.amber.11}", _dark: "{colors.darkAmber.12}" },
+        value: { base: "{colors.amber.12}", _dark: "{colors.darkAmber.12}" },
       },
     },
     info: {
