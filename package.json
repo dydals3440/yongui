@@ -64,7 +64,7 @@
     "commitizen": "^4.3.1",
     "commitlint": "^20.0.0",
     "globals": "^16.4.0",
-    "happy-dom": "^18.0.1",
+    "happy-dom": "^19.0.1",
     "lint-staged": "^16.2.2",
     "simple-git-hooks": "^2.13.1",
     "sort-package-json": "^3.4.0",
