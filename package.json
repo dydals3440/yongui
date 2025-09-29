@@ -15,10 +15,11 @@
     "sb": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "test:sb": "bun run sb & sleep 5 && bun run test-storybook && kill %1"
   },
   "simple-git-hooks": {
-    "pre-commit": "bunx lint-staged"
+    "pre-commit": "bun run test:sb && bunx lint-staged"
   },
   "lint-staged": {
     "*.{css,js,json,jsx,ts,tsx}": "biome check --write --unsafe --no-errors-on-unmatched --files-ignore-unknown=true",
