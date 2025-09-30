@@ -224,6 +224,15 @@ export const textStyles = {
         letterSpacing: "tight",
       },
     },
+    "6": {
+      value: {
+        fontFamily: "sans",
+        fontSize: "sm",
+        fontWeight: "bold",
+        lineHeight: "tight",
+        letterSpacing: "tight",
+      },
+    },
   },
 };
 
