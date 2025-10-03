@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 import * as stories from "./Heading.stories";
 
-const { Basic, Tones } = composeStories(stories);
+const { Basic, Tones, Alignments, WordBreaks } = composeStories(stories);
 
 describe("렌더링", () => {
   test("텍스트 내용이 올바르게 렌더링됨", () => {
@@ -57,5 +57,46 @@ describe("tone 속성", () => {
     render(<Tones />);
 
     expect(screen.getByText(text)).toHaveClass(colorClass);
+  });
+});
+
+describe("align 속성", () => {
+  test.each([
+    { align: "left", text: "텍스트를 왼쪽 정렬된 제목", alignClass: "ta_left" },
+    {
+      align: "center",
+      text: "텍스트를 가운데 정렬된 제목",
+      alignClass: "ta_center",
+    },
+    {
+      align: "right",
+      text: "텍스트를 오른쪽 정렬된 제목",
+      alignClass: "ta_right",
+    },
+  ] as const)("$description", ({ text, alignClass }) => {
+    render(<Alignments />);
+
+    expect(screen.getByText(text)).toHaveClass(alignClass);
+  });
+});
+
+describe("wordBreak 속성", () => {
+  test.each([
+    {
+      wordBreak: "eng",
+      text: "english line break",
+      wordBreakClass: "wb_normal",
+    },
+    {
+      wordBreak: "cjk",
+      text: "한글은 단어 단위로 줄바꿈됩니다.",
+      wordBreakClass: "wb_keep-all",
+    },
+  ] as const)("$description", ({ text, wordBreakClass }) => {
+    render(<WordBreaks />);
+
+    console.log(text);
+
+    expect(screen.getByText(text)).toHaveClass(wordBreakClass);
   });
 });
