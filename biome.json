@@ -13,7 +13,9 @@
       "!**/storybook-static",
       "!**/styled-system",
       "!**/.direnv",
-      "!**/.next"
+      "!**/.next",
+      "!**/.claude",
+      "!**/.zed"
     ]
   },
   "linter": {
