@@ -1,12 +1,12 @@
-import type { ComponentPropsWithoutRef, Ref } from 'react';
-import { css, cva, cx } from '../../../styled-system/css';
-import { vstack } from '../../../styled-system/patterns';
-import { Icon, type IconProps } from '../Icon/Icon';
+import type { ComponentPropsWithoutRef, Ref } from "react";
+import { css, cva, cx } from "../../../styled-system/css";
+import { vstack } from "../../../styled-system/patterns";
+import { Icon, type IconProps } from "../Icon/Icon";
 
-export type TextInputSize = 'sm' | 'md' | 'lg';
+export type TextInputSize = "sm" | "md" | "lg";
 
 export interface TextInputProps
-  extends Omit<ComponentPropsWithoutRef<'input'>, 'size'> {
+  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   /** 입력 필드의 크기 */
   size?: TextInputSize;
   /** 입력 필드 위에 표시할 라벨 텍스트 */
@@ -16,9 +16,9 @@ export interface TextInputProps
   /** 입력값의 유효성 검사 실패 여부 */
   invalid?: boolean;
   /** 입력 필드 왼쪽에 표시할 아이콘 */
-  leadingIcon?: IconProps['name'];
+  leadingIcon?: IconProps["name"];
   /** 입력 필드 오른쪽에 표시할 아이콘 */
-  trailingIcon?: IconProps['name'];
+  trailingIcon?: IconProps["name"];
   /** 입력 필드가 비어있을 때 표시되는 안내 텍스트 */
   placeholder?: string;
   /** 입력 필드 아래에 표시할 도움말 텍스트 */
@@ -56,7 +56,7 @@ export interface TextInputProps
  * ```
  */
 export function TextInput({
-  size = 'md',
+  size = "md",
   label,
   required,
   invalid,
@@ -70,43 +70,43 @@ export function TextInput({
   ref,
   ...rest
 }: TextInputProps) {
-  const inputId = id || rest.name || 'text-input';
+  const inputId = id || rest.name || "text-input";
   const messageId = `${inputId}-message`;
   const showMessage = (invalid && errorText) || helperText;
 
-  const renderIcon = (name: IconProps['name']) => {
-    let tone: IconProps['tone'];
+  const renderIcon = (name: IconProps["name"]) => {
+    let tone: IconProps["tone"];
 
     if (disabled) {
-      tone = 'neutral';
+      tone = "neutral";
     } else if (invalid) {
-      tone = 'danger';
+      tone = "danger";
     }
 
     return (
-      <Icon name={name} size='md' tone={tone} data-testid={`icon-${name}`} />
+      <Icon name={name} size="md" tone={tone} data-testid={`icon-${name}`} />
     );
   };
 
   return (
-    <div className={vstack({ gap: '4', alignItems: 'flex-start', w: 'full' })}>
+    <div className={vstack({ gap: "4", alignItems: "flex-start", w: "full" })}>
       {label && (
         <label
           htmlFor={inputId}
           className={css({
-            display: 'flex',
-            gap: '4',
-            alignItems: 'center',
+            display: "flex",
+            gap: "4",
+            alignItems: "center",
           })}
         >
           <span className={labelStyles({ size })}>{label}</span>
           {required && (
             <span
               className={css({
-                color: 'fg.danger',
-                fontSize: 'inherit',
+                color: "fg.danger",
+                fontSize: "inherit",
               })}
-              aria-hidden='true'
+              aria-hidden="true"
             >
               *
             </span>
@@ -116,7 +116,7 @@ export function TextInput({
 
       <div
         className={cx(wrapperStyles({ invalid, size }), className)}
-        data-disabled={disabled ? '' : undefined}
+        data-disabled={disabled ? "" : undefined}
       >
         {leadingIcon && renderIcon(leadingIcon)}
         <input
@@ -143,129 +143,129 @@ export function TextInput({
 
 const wrapperStyles = cva({
   base: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    w: 'full',
-    borderStyle: 'solid',
-    borderColor: 'border.neutral',
-    borderWidth: 'md',
-    borderRadius: 'sm',
-    bg: 'appBg',
-    transitionProperty: 'background-color, box-shadow border-color,',
-    transitionDuration: '0.2s',
-    transitionTimingFunction: 'ease-in-out',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    w: "full",
+    borderStyle: "solid",
+    borderColor: "border.neutral",
+    borderWidth: "md",
+    borderRadius: "sm",
+    bg: "appBg",
+    transitionProperty: "background-color, box-shadow border-color,",
+    transitionDuration: "0.2s",
+    transitionTimingFunction: "ease-in-out",
 
     _focusWithin: {
-      borderColor: 'border.brand.focus',
-      boxShadow: '0 0 0 3px token(colors.border.brand.focus / 0.2)',
+      borderColor: "border.brand.focus",
+      boxShadow: "0 0 0 3px token(colors.border.brand.focus / 0.2)",
     },
 
-    '&[data-disabled]': {
-      pointerEvents: 'none',
-      bg: 'bg.neutral.disabled',
-      borderColor: 'border.neutral.disabled',
+    "&[data-disabled]": {
+      pointerEvents: "none",
+      bg: "bg.neutral.disabled",
+      borderColor: "border.neutral.disabled",
     },
   },
   variants: {
     size: {
       sm: {
-        h: '10',
-        px: '12',
-        columnGap: '8',
-        fontSize: 'sm',
+        h: "10",
+        px: "12",
+        columnGap: "8",
+        fontSize: "sm",
       },
       md: {
-        h: '12',
-        px: '12',
-        columnGap: '8',
-        fontSize: 'md',
+        h: "12",
+        px: "12",
+        columnGap: "8",
+        fontSize: "md",
       },
       lg: {
-        h: '14',
-        px: '16',
-        columnGap: '12',
-        fontSize: 'lg',
+        h: "14",
+        px: "16",
+        columnGap: "12",
+        fontSize: "lg",
       },
     },
     invalid: {
       true: {
-        borderColor: 'border.danger',
+        borderColor: "border.danger",
         _focusWithin: {
-          borderColor: 'border.danger',
-          boxShadow: '0 0 0 3px token(colors.border.danger / 0.2)',
+          borderColor: "border.danger",
+          boxShadow: "0 0 0 3px token(colors.border.danger / 0.2)",
         },
       },
       false: {
         _hover: {
-          borderColor: 'border.neutral.hover',
+          borderColor: "border.neutral.hover",
         },
       },
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: "md",
   },
 });
 
 const inputStyles = cva({
   base: {
     flex: 1,
-    w: 'full',
-    h: 'full',
-    bg: 'transparent',
-    color: 'fg.neutral',
-    outline: 'none',
-    border: 'none',
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
+    w: "full",
+    h: "full",
+    bg: "transparent",
+    color: "fg.neutral",
+    outline: "none",
+    border: "none",
+    fontFamily: "inherit",
+    fontSize: "inherit",
 
     _placeholder: {
-      color: 'fg.neutral.placeholder',
+      color: "fg.neutral.placeholder",
     },
 
     _disabled: {
-      color: 'fg.neutral.disabled',
-      pointerEvents: 'none',
+      color: "fg.neutral.disabled",
+      pointerEvents: "none",
     },
   },
 });
 
 const labelStyles = cva({
   base: {
-    color: 'fg.neutral',
-    fontWeight: 'medium',
-    cursor: 'pointer',
+    color: "fg.neutral",
+    fontWeight: "medium",
+    cursor: "pointer",
   },
   variants: {
     size: {
       sm: {
-        textStyle: 'label.sm',
+        textStyle: "label.sm",
       },
       md: {
-        textStyle: 'label.md',
+        textStyle: "label.md",
       },
       lg: {
-        textStyle: 'label.lg',
+        textStyle: "label.lg",
       },
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: "md",
   },
 });
 
 const messageStyles = cva({
   base: {
-    textStyle: 'caption',
+    textStyle: "caption",
   },
   variants: {
     invalid: {
       true: {
-        color: 'fg.danger',
+        color: "fg.danger",
       },
       false: {
-        color: 'fg.neutral.placeholder',
+        color: "fg.neutral.placeholder",
       },
     },
   },
