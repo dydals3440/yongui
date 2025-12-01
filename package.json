@@ -48,7 +48,7 @@
     "@commitlint/cz-commitlint": "^20.0.0",
     "@commitlint/prompt": "^20.0.0",
     "@commitlint/types": "^20.0.0",
-    "@faker-js/faker": "^10.0.0",
+    "@faker-js/faker": "^10.1.0",
     "@pandacss/dev": "^1.4.0",
     "@storybook/addon-a11y": "^9.1.16",
     "@storybook/addon-designs": "^10.0.2",
