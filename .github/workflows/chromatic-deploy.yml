@@ -30,14 +30,10 @@ jobs:
         run: |
           echo "url=https://${GITHUB_SHA}--68d9044397ede4bc9c70596a.chromatic.com" >> "$GITHUB_OUTPUT"
 
-      # chromatic 출력이 있으면 그걸, 없으면 fallback을 사용
+      # 항상 커밋 SHA 기반 퍼머링크를 사용 (Chromatic 빌드 URL은 CDN 지연/리다이렉트 문제 발생)
       - id: final
         run: |
-          if [ -n "${{ steps.chromatic.outputs.storybookUrl }}" ]; then
-            echo "final_url=${{ steps.chromatic.outputs.storybookUrl }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "final_url=${{ steps.fallback.outputs.url }}" >> "$GITHUB_OUTPUT"
-          fi
+          echo "final_url=${{ steps.fallback.outputs.url }}" >> "$GITHUB_OUTPUT"
 
   register-deployment:
     needs: build-chromatic
