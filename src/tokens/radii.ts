@@ -21,7 +21,7 @@ import type { Tokens } from "@pandacss/types";
  * | 4xl | 2rem | 32px | - |
  * | full | infinity | 완전 원형 | 아바타, 뱃지 |
  */
-export const radii: Tokens["radii"] = {
+const _radii = {
   xs: { value: "0.125rem" },
   sm: { value: "0.25rem" },
   md: { value: "0.375rem" },
@@ -31,7 +31,9 @@ export const radii: Tokens["radii"] = {
   "3xl": { value: "1.5rem" },
   "4xl": { value: "2rem" },
   full: { value: "calc(infinity * 1px)" },
-};
+} satisfies Tokens["radii"];
+
+export const radii = _radii;
 
 /** 모서리 둥글기 토큰 키 타입 */
-export type Radii = keyof typeof radii;
+export type Radii = keyof typeof _radii;

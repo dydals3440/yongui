@@ -18,7 +18,7 @@ import type { Tokens } from "@pandacss/types";
  * <Input border="danger" />
  * ```
  */
-export const borders: Tokens["borders"] = {
+const _borders = {
   neutral: {
     value: {
       width: "{borderWidths.sm}",
@@ -61,7 +61,9 @@ export const borders: Tokens["borders"] = {
       style: "solid",
     },
   },
-};
+} satisfies Tokens["borders"];
+
+export const borders = _borders;
 
 /**
  * 테두리 두께
@@ -72,14 +74,16 @@ export const borders: Tokens["borders"] = {
  * | md | 1.5px | 강조 테두리 |
  * | lg | 2px | 포커스 링 |
  */
-export const borderWidths: Tokens["borderWidths"] = {
+const _borderWidths = {
   sm: { value: "1px" },
   md: { value: "1.5px" },
   lg: { value: "2px" },
-};
+} satisfies Tokens["borderWidths"];
+
+export const borderWidths = _borderWidths;
 
 /** 테두리 토큰 키 타입 */
-export type Border = keyof typeof borders;
+export type Border = keyof typeof _borders;
 
 /** 테두리 두께 토큰 키 타입 */
-export type BorderWidth = keyof typeof borderWidths;
+export type BorderWidth = keyof typeof _borderWidths;

@@ -77,7 +77,7 @@ export const Heading = ({
   return (
     <Tag
       className={css(
-        styles.raw({
+        headingVariants.raw({
           level: size ? undefined : level,
           tone,
           align,
@@ -95,7 +95,7 @@ export const Heading = ({
   );
 };
 
-const styles = cva({
+export const headingVariants = cva({
   variants: {
     level: {
       1: { textStyle: "heading.1" },

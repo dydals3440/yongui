@@ -30,7 +30,7 @@ export const Text = ({
   return (
     <Tag
       className={css(
-        styles.raw({ tone, muted }),
+        textVariants.raw({ tone, muted }),
         css.raw({
           fontSize: size,
           fontWeight: weight,
@@ -44,7 +44,7 @@ export const Text = ({
 };
 
 // 명암비는 brand, neutral 색상에 적용되며, 나머지 색상에는 적용되지 않습니다.
-const styles = cva({
+export const textVariants = cva({
   compoundVariants: [
     {
       muted: false,

@@ -29,7 +29,7 @@ import type { Tokens } from "@pandacss/types";
  * <Box p="16" gap="8" />
  * ```
  */
-export const spacing: Tokens["spacing"] = {
+const _spacing = {
   0: { value: "0rem" },
   2: { value: "0.125rem" },
   4: { value: "0.25rem" },
@@ -42,7 +42,9 @@ export const spacing: Tokens["spacing"] = {
   36: { value: "2.25rem" },
   40: { value: "2.5rem" },
   48: { value: "3rem" },
-};
+} satisfies Tokens["spacing"];
+
+export const spacing = _spacing;
 
 /** 간격 토큰 키 타입 (0 | 2 | 4 | 8 | 12 | 16 | 20 | 24 | 32 | 36 | 40 | 48) */
-export type Spacing = keyof typeof spacing;
+export type Spacing = keyof typeof _spacing;

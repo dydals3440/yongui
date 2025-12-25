@@ -73,7 +73,7 @@ export const Checkbox = ({
         required={required}
         name={name}
         form={form}
-        className={styles({ tone, disabled })}
+        className={checkboxVariants({ tone, disabled })}
         value={value}
         {...rest}
       >
@@ -103,7 +103,7 @@ export const Checkbox = ({
   );
 };
 
-const styles = cva({
+export const checkboxVariants = cva({
   base: {
     appearance: "none",
     margin: "0",

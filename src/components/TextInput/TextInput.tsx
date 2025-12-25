@@ -31,117 +31,7 @@ export interface TextInputProps
   ref?: Ref<HTMLInputElement>;
 }
 
-/**
- * TextInput 컴포넌트
- *
- * 사용자가 텍스트를 입력할 수 있는 단일 줄 입력 필드입니다.
- *
- * @example
- * ```tsx
- * // 기본 사용
- * <TextInput placeholder="이름을 입력하세요" />
- *
- * // 라벨과 필수 입력 표시
- * <TextInput label="이메일" required placeholder="example@email.com" />
- *
- * // 도움말 텍스트
- * <TextInput label="비밀번호" helperText="8자 이상 입력해주세요" />
- *
- * // 오류 상태와 오류 메시지
- * <TextInput label="이메일" invalid errorText="올바른 이메일 형식이 아닙니다" />
- *
- * // 크기 변형
- * <TextInput size="sm" placeholder="작은 크기" />
- * <TextInput size="lg" placeholder="큰 크기" />
- * ```
- */
-export function TextInput({
-  size = "md",
-  label,
-  required,
-  invalid,
-  className,
-  leadingIcon,
-  trailingIcon,
-  helperText,
-  errorText,
-  disabled,
-  id,
-  ref,
-  ...rest
-}: TextInputProps) {
-  const inputId = id || rest.name || "text-input";
-  const messageId = `${inputId}-message`;
-  const showMessage = (invalid && errorText) || helperText;
-
-  const renderIcon = (name: IconProps["name"]) => {
-    let tone: IconProps["tone"];
-
-    if (disabled) {
-      tone = "neutral";
-    } else if (invalid) {
-      tone = "danger";
-    }
-
-    return (
-      <Icon name={name} size="md" tone={tone} data-testid={`icon-${name}`} />
-    );
-  };
-
-  return (
-    <div className={vstack({ gap: "4", alignItems: "flex-start", w: "full" })}>
-      {label && (
-        <label
-          htmlFor={inputId}
-          className={css({
-            display: "flex",
-            gap: "4",
-            alignItems: "center",
-          })}
-        >
-          <span className={labelStyles({ size })}>{label}</span>
-          {required && (
-            <span
-              className={css({
-                color: "fg.danger",
-                fontSize: "inherit",
-              })}
-              aria-hidden="true"
-            >
-              *
-            </span>
-          )}
-        </label>
-      )}
-
-      <div
-        className={cx(wrapperStyles({ invalid, size }), className)}
-        data-disabled={disabled ? "" : undefined}
-      >
-        {leadingIcon && renderIcon(leadingIcon)}
-        <input
-          id={inputId}
-          className={inputStyles()}
-          ref={ref}
-          disabled={disabled}
-          aria-invalid={invalid ? true : undefined}
-          aria-required={required ? true : undefined}
-          aria-describedby={showMessage ? messageId : undefined}
-          {...rest}
-        />
-        {trailingIcon && renderIcon(trailingIcon)}
-      </div>
-
-      {showMessage && (
-        <p id={messageId} className={messageStyles({ invalid: !!invalid })}>
-          {invalid && errorText ? errorText : helperText}
-        </p>
-      )}
-    </div>
-  );
-}
-
-const wrapperStyles = cva({
+export const textInputVariants = cva({
   base: {
     display: "flex",
     flexDirection: "row",
@@ -273,3 +163,113 @@ const messageStyles = cva({
     invalid: false,
   },
 });
+
+/**
+ * TextInput 컴포넌트
+ *
+ * 사용자가 텍스트를 입력할 수 있는 단일 줄 입력 필드입니다.
+ *
+ * @example
+ * ```tsx
+ * // 기본 사용
+ * <TextInput placeholder="이름을 입력하세요" />
+ *
+ * // 라벨과 필수 입력 표시
+ * <TextInput label="이메일" required placeholder="example@email.com" />
+ *
+ * // 도움말 텍스트
+ * <TextInput label="비밀번호" helperText="8자 이상 입력해주세요" />
+ *
+ * // 오류 상태와 오류 메시지
+ * <TextInput label="이메일" invalid errorText="올바른 이메일 형식이 아닙니다" />
+ *
+ * // 크기 변형
+ * <TextInput size="sm" placeholder="작은 크기" />
+ * <TextInput size="lg" placeholder="큰 크기" />
+ * ```
+ */
+export function TextInput({
+  size = "md",
+  label,
+  required,
+  invalid,
+  className,
+  leadingIcon,
+  trailingIcon,
+  helperText,
+  errorText,
+  disabled,
+  id,
+  ref,
+  ...rest
+}: TextInputProps) {
+  const inputId = id || rest.name || "text-input";
+  const messageId = `${inputId}-message`;
+  const showMessage = (invalid && errorText) || helperText;
+
+  const renderIcon = (name: IconProps["name"]) => {
+    let tone: IconProps["tone"];
+
+    if (disabled) {
+      tone = "neutral";
+    } else if (invalid) {
+      tone = "danger";
+    }
+
+    return (
+      <Icon name={name} size="md" tone={tone} data-testid={`icon-${name}`} />
+    );
+  };
+
+  return (
+    <div className={vstack({ gap: "4", alignItems: "flex-start", w: "full" })}>
+      {label && (
+        <label
+          htmlFor={inputId}
+          className={css({
+            display: "flex",
+            gap: "4",
+            alignItems: "center",
+          })}
+        >
+          <span className={labelStyles({ size })}>{label}</span>
+          {required && (
+            <span
+              className={css({
+                color: "fg.danger",
+                fontSize: "inherit",
+              })}
+              aria-hidden="true"
+            >
+              *
+            </span>
+          )}
+        </label>
+      )}
+
+      <div
+        className={cx(textInputVariants({ invalid, size }), className)}
+        data-disabled={disabled ? "" : undefined}
+      >
+        {leadingIcon && renderIcon(leadingIcon)}
+        <input
+          id={inputId}
+          className={inputStyles()}
+          ref={ref}
+          disabled={disabled}
+          aria-invalid={invalid ? true : undefined}
+          aria-required={required ? true : undefined}
+          aria-describedby={showMessage ? messageId : undefined}
+          {...rest}
+        />
+        {trailingIcon && renderIcon(trailingIcon)}
+      </div>
+
+      {showMessage && (
+        <p id={messageId} className={messageStyles({ invalid: !!invalid })}>
+          {invalid && errorText ? errorText : helperText}
+        </p>
+      )}
+    </div>
+  );
+}

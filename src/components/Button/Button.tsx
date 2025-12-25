@@ -87,7 +87,7 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={styles({ tone, variant, size, disabled, loading })}
+      className={buttonVariants({ tone, variant, size, disabled, loading })}
       type={type}
       onClick={loading ? undefined : onClick}
       disabled={disabled || loading}
@@ -98,7 +98,7 @@ export const Button = ({
   );
 };
 
-const styles = cva({
+export const buttonVariants = cva({
   base: {
     appearance: "none",
     margin: "0",

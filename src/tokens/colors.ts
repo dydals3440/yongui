@@ -41,7 +41,7 @@ export type Tone =
  * | `fgSolid` | 채워진 배경 위 전경색 |
  * | `border` | 테두리 색상 |
  */
-export const semanticColors: SemanticTokens["colors"] = {
+const _semanticColors = {
   appBg: {
     value: { base: "{colors.white}", _dark: "{colors.black}" },
   },
@@ -297,7 +297,9 @@ export const semanticColors: SemanticTokens["colors"] = {
       value: { base: "{colors.blue.11}", _dark: "{colors.darkBlue.11}" },
     },
   },
-};
+} satisfies SemanticTokens["colors"];
+
+export const semanticColors = _semanticColors;
 
 /**
  * 기본(Primitive) 색상 팔레트
@@ -311,7 +313,7 @@ export const semanticColors: SemanticTokens["colors"] = {
  *
  * 다크 모드 색상은 `dark` 접두사로 구분됩니다 (예: `darkSlate`, `darkTeal`).
  */
-export const colors: Tokens["colors"] = {
+const _colors = {
   base: {
     white: { value: "#FFFFFF" },
     black: { value: "#000000" },
@@ -540,4 +542,6 @@ export const colors: Tokens["colors"] = {
     11: { value: "#3DD68C" },
     12: { value: "#B1F1CB" },
   },
-};
+} satisfies Tokens["colors"];
+
+export const colors = _colors;

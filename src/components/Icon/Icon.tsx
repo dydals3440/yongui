@@ -55,13 +55,13 @@ export const Icon = ({ name, size, tone, ...rest }: IconProps) => {
     <Tag
       role="img"
       aria-label={name}
-      className={styles({ size, tone })}
+      className={iconVariants({ size, tone })}
       {...rest}
     />
   );
 };
 
-const styles = cva({
+export const iconVariants = cva({
   base: { display: "inline-block", color: "currentcolor" },
   variants: {
     size: {
