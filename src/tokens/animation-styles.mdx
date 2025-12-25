@@ -3,6 +3,55 @@ import { animationStyles } from './animation-styles';
 
 <Meta title="Tokens/Animation Styles" />
 
+<style>
+  {`
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+      50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideInDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes scaleUp {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes scaleDown {
+      from { transform: scale(1.05); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  `}
+</style>
+
 # Animation Styles
 
 YongUI의 애니메이션 시스템은 일관되고 자연스러운 모션을 제공합니다.
@@ -538,14 +587,14 @@ const NotificationBadge = ({ count, hasNew }) => (
 
 ## 애니메이션 속성
 
-| 스타일           | 지속 시간 | 용도       | 성능 |
-| :--------------- | :-------- | :--------- | :--- |
-| **spin**         | 1s (반복) | 로딩 표시  | 최적 |
-| **pulse**        | 2s (반복) | 주목 유도  | 최적 |
-| **bounce**       | 1s (반복) | 강조, 유도 | 양호 |
-| **fadeIn/Out**   | 0.3s      | 전환 효과  | 최적 |
-| **slideIn/Out**  | 0.3s      | 패널 이동  | 양호 |
-| **scaleUp/Down** | 0.2s      | 팝업 효과  | 최적 |
+| 스타일             | 지속 시간   | 용도         | 성능   |
+| :----------------- | :---------- | :----------- | :----- |
+| **spin**           | 1s (반복)   | 로딩 표시    | 최적   |
+| **pulse**          | 2s (반복)   | 주목 유도    | 최적   |
+| **bounce**         | 1s (반복)   | 강조, 유도   | 양호   |
+| **fadeIn/Out**     | 0.3s        | 전환 효과    | 최적   |
+| **slideIn/Out**    | 0.3s        | 패널 이동    | 양호   |
+| **scaleUp/Down**   | 0.2s        | 팝업 효과    | 최적   |
 
 ## 모범 사례
 

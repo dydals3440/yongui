@@ -1,5 +1,24 @@
+/**
+ * @fileoverview YongUI 색상 토큰
+ *
+ * Radix Colors 기반의 12단계 색상 스케일을 제공합니다.
+ * 라이트/다크 모드를 자동으로 지원하는 시맨틱 토큰과
+ * 기본 색상 팔레트(Primitive)로 구성됩니다.
+ *
+ * @see https://www.radix-ui.com/colors
+ */
 import type { SemanticTokens, Tokens } from "@pandacss/types";
 
+/**
+ * 컴포넌트의 의미론적 색상 톤
+ *
+ * - `brand`: 브랜드 아이덴티티 (violet/teal)
+ * - `neutral`: 중립적 UI 요소 (slate/sage)
+ * - `danger`: 오류, 삭제 등 위험 상태 (red)
+ * - `success`: 성공, 완료 상태 (green)
+ * - `warning`: 경고, 주의 상태 (amber)
+ * - `info`: 정보, 안내 상태 (blue)
+ */
 export type Tone =
   | "brand"
   | "neutral"
@@ -8,6 +27,20 @@ export type Tone =
   | "warning"
   | "info";
 
+/**
+ * 시맨틱 색상 토큰
+ *
+ * 용도에 따라 자동으로 라이트/다크 모드 색상이 적용됩니다.
+ *
+ * | 카테고리 | 용도 |
+ * |---------|------|
+ * | `appBg` | 앱 전체 배경 |
+ * | `bg` | 컴포넌트 배경 (DEFAULT, hover, active, disabled) |
+ * | `bgSolid` | 채워진 배경 (버튼 등) |
+ * | `fg` | 텍스트, 아이콘 전경색 |
+ * | `fgSolid` | 채워진 배경 위 전경색 |
+ * | `border` | 테두리 색상 |
+ */
 export const semanticColors: SemanticTokens["colors"] = {
   appBg: {
     value: { base: "{colors.white}", _dark: "{colors.black}" },
@@ -266,6 +299,18 @@ export const semanticColors: SemanticTokens["colors"] = {
   },
 };
 
+/**
+ * 기본(Primitive) 색상 팔레트
+ *
+ * Radix Colors 12단계 스케일 기반:
+ * - 1-2: 배경
+ * - 3-5: 컴포넌트 배경
+ * - 6-8: 테두리
+ * - 9-10: Solid 배경
+ * - 11-12: 텍스트
+ *
+ * 다크 모드 색상은 `dark` 접두사로 구분됩니다 (예: `darkSlate`, `darkTeal`).
+ */
 export const colors: Tokens["colors"] = {
   base: {
     white: { value: "#FFFFFF" },

@@ -1,3 +1,23 @@
+/**
+ * @fileoverview YongUI 타이포그래피 토큰
+ *
+ * Pretendard Variable 폰트 기반의 한글 최적화 타이포그래피 시스템입니다.
+ * display, title, body, label, caption, code, heading 스타일을 제공합니다.
+ */
+
+/**
+ * 텍스트 스타일 프리셋
+ *
+ * | 스타일 | 용도 | 크기 |
+ * |-------|------|------|
+ * | `display` | 히어로, 대형 제목 | lg/md/sm |
+ * | `title` | 섹션 제목 | lg/md/sm |
+ * | `body` | 본문 텍스트 | lg/md/sm |
+ * | `label` | 폼 라벨, 버튼 | lg/md/sm + underline/strong |
+ * | `caption` | 보조 텍스트 | - |
+ * | `code` | 코드 블록 | - |
+ * | `heading` | HTML 헤딩 (h1-h6) | 1-6 |
+ */
 export const textStyles = {
   display: {
     lg: {
@@ -236,11 +256,13 @@ export const textStyles = {
   },
 };
 
+/** 폰트 패밀리 - sans(Pretendard), mono(JetBrains Mono) */
 export const fonts = {
   sans: { value: '"Pretendard Variable", sans-serif' },
   mono: { value: '"JetBrains Mono", monospace' },
 };
 
+/** 폰트 굵기 (400-700) */
 export const fontWeights = {
   normal: { value: "400" },
   medium: { value: "500" },
@@ -248,30 +270,35 @@ export const fontWeights = {
   bold: { value: "700" },
 };
 
+/** 폰트 굵기 타입 */
 export type FontWeight = keyof typeof fontWeights;
 
+/** 폰트 크기 (xs: 12px ~ 8xl: 72px) */
 export const fontSizes = {
-  xs: { value: "0.75rem" },
-  sm: { value: "0.875rem" },
-  md: { value: "1rem" },
-  lg: { value: "1.125rem" },
-  xl: { value: "1.25rem" },
-  "2xl": { value: "1.5rem" },
-  "3xl": { value: "1.875rem" },
-  "4xl": { value: "2.25rem" },
-  "5xl": { value: "2.75rem" },
-  "6xl": { value: "3.25rem" },
-  "7xl": { value: "3.75rem" },
-  "8xl": { value: "4.5rem" },
+  xs: { value: "0.75rem" }, // 12px
+  sm: { value: "0.875rem" }, // 14px
+  md: { value: "1rem" }, // 16px
+  lg: { value: "1.125rem" }, // 18px
+  xl: { value: "1.25rem" }, // 20px
+  "2xl": { value: "1.5rem" }, // 24px
+  "3xl": { value: "1.875rem" }, // 30px
+  "4xl": { value: "2.25rem" }, // 36px
+  "5xl": { value: "2.75rem" }, // 44px
+  "6xl": { value: "3.25rem" }, // 52px
+  "7xl": { value: "3.75rem" }, // 60px
+  "8xl": { value: "4.5rem" }, // 72px
 };
 
+/** 폰트 크기 타입 */
 export type FontSize = keyof typeof fontSizes;
 
+/** 자간 - tight(-0.1), balanced(0) */
 export const letterSpacings = {
   tight: { value: "-0.1" },
   balanced: { value: "0" },
 };
 
+/** 행간 - tight(1.2), balanced(1.5) */
 export const lineHeights = {
   tight: { value: "1.2" },
   balanced: { value: "1.5" },
