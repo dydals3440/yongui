@@ -3,37 +3,37 @@ name: Storybook Tests
 on: deployment_status
 
 jobs:
-    test-storybook:
-        runs-on: ubuntu-latest
-        timeout-minutes: 60
-        # 환경 이름 대소문자 차이를 흡수하고, 성공 상태만 테스트
-        if: github.event.deployment_status.environment == 'Chromatic' && github.event.deployment_status.state == 'success'
+  test-storybook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    # 환경 이름 대소문자 차이를 흡수하고, 성공 상태만 테스트
+    if: github.event.deployment_status.environment == 'Chromatic' && github.event.deployment_status.state == 'success'
 
-        steps:
-            - uses: actions/checkout@v6
-            - uses: oven-sh/setup-bun@v2
-            - run: bun install
-            - run: bunx playwright install --with-deps
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bunx playwright install --with-deps
 
-            # CDN 전파 등으로 곧바로 200이 아닐 수 있으므로 짧게 재시도
-            - name: Wait for Storybook to be reachable
-              shell: bash
-              run: |
-                  URL="${{ github.event.deployment_status.environment_url }}"
-                  echo "Checking: $URL"
-                  for i in {1..20}; do
-                    CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
-                    if [ "$CODE" -eq 200 ]; then
-                      echo "Reachable: $URL"
-                      exit 0
-                    fi
-                    echo "HTTP $CODE - retry ($i/20) in 3s..."
-                    sleep 3
-                  done
-                  echo "Storybook not reachable: $URL"
-                  exit 1
+      # CDN 전파 등으로 곧바로 200이 아닐 수 있으므로 재시도
+      - name: Wait for Storybook to be reachable
+        shell: bash
+        run: |
+          URL="${{ github.event.deployment_status.environment_url }}"
+          echo "Checking: $URL"
+          for i in {1..20}; do
+            CODE=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 10 "$URL" || echo "000")
+            if [ "$CODE" -eq 200 ]; then
+              echo "Reachable: $URL"
+              exit 0
+            fi
+            echo "HTTP $CODE - retry ($i/20) in 3s..."
+            sleep 3
+          done
+          echo "Storybook not reachable: $URL"
+          exit 1
 
-            - name: Run Storybook tests
-              run: bun run test-storybook
-              env:
-                  TARGET_URL: ${{ github.event.deployment_status.environment_url }}
+      - name: Run Storybook tests
+        run: bun run test-storybook
+        env:
+          TARGET_URL: ${{ github.event.deployment_status.environment_url }}
