@@ -15,23 +15,20 @@ jobs:
       - run: bun install
       - run: bunx playwright install --with-deps
 
-      # CDN/DNS 전파 등으로 곧바로 200이 아닐 수 있으므로 재시도
+      # CDN 전파 등으로 곧바로 200이 아닐 수 있으므로 재시도
       - name: Wait for Storybook to be reachable
         shell: bash
         run: |
           URL="${{ github.event.deployment_status.environment_url }}"
           echo "Checking: $URL"
-          # 첫 번째 요청 전 DNS 전파를 위해 초기 대기
-          echo "Waiting 30s for DNS propagation..."
-          sleep 30
-          for i in {1..30}; do
-            CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$URL" || echo "000")
+          for i in {1..20}; do
+            CODE=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 10 "$URL" || echo "000")
             if [ "$CODE" -eq 200 ]; then
               echo "Reachable: $URL"
               exit 0
             fi
-            echo "HTTP $CODE - retry ($i/30) in 5s..."
-            sleep 5
+            echo "HTTP $CODE - retry ($i/20) in 3s..."
+            sleep 3
           done
           echo "Storybook not reachable: $URL"
           exit 1
