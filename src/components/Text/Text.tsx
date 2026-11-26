@@ -45,6 +45,20 @@ export const Text = ({
 
 // 명암비는 brand, neutral 색상에 적용되며, 나머지 색상에는 적용되지 않습니다.
 export const textVariants = cva({
+  variants: {
+    tone: {
+      brand: {},
+      neutral: {},
+      danger: {},
+      success: {},
+      warning: {},
+      info: {},
+    },
+    muted: {
+      true: {},
+      false: {},
+    },
+  },
   compoundVariants: [
     {
       muted: false,

@@ -6,17 +6,18 @@ import * as stories from "./Icon.stories";
 
 const { Basic } = composeStories(stories);
 
-test.each(
-  Object.keys(icons) as IconName[],
-)('아이콘 "%s"가 기본 설정으로 정상 표시된다', (name) => {
-  render(<Basic name={name} aria-label={name} />);
+test.each(Object.keys(icons) as IconName[])(
+  '아이콘 "%s"가 기본 설정으로 정상 표시된다',
+  (name) => {
+    render(<Basic name={name} aria-label={name} />);
 
-  expect(screen.getByLabelText(name)).toBeInTheDocument();
-  expect(screen.getByLabelText(name)).toHaveClass("c_currentcolor");
-  expect(screen.getByLabelText(name)).toHaveClass("w_1.25rem h_1.25rem");
-  expect(screen.getByLabelText(name)).toHaveAttribute("aria-label", name);
-  expect(screen.getByLabelText(name)).toHaveAttribute("role", "img");
-});
+    expect(screen.getByLabelText(name)).toBeInTheDocument();
+    expect(screen.getByLabelText(name)).toHaveClass("c_currentcolor");
+    expect(screen.getByLabelText(name)).toHaveClass("w_1.25rem h_1.25rem");
+    expect(screen.getByLabelText(name)).toHaveAttribute("aria-label", name);
+    expect(screen.getByLabelText(name)).toHaveAttribute("role", "img");
+  },
+);
 
 test.each([
   ["neutral", "c_fg.neutral"],
