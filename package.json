@@ -10,7 +10,7 @@
     "dev": "vite",
     "format": "biome check .",
     "format:fix": "biome check --write .",
-    "prepare": "simple-git-hooks && panda codegen",
+    "prepare": "simple-git-hooks && panda codegen --clean",
     "preview": "vite preview",
     "sb": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
