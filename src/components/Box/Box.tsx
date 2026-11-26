@@ -1,5 +1,4 @@
-import type React from "react";
-import type { PropsWithChildren } from "react";
+import type { CSSProperties, HTMLAttributes, PropsWithChildren } from "react";
 import { css, cx } from "../../../styled-system/css";
 import type { Spacing } from "../../tokens/spacing";
 
@@ -28,7 +27,7 @@ type CSSSize =
   | "100%";
 
 export interface BoxProps
-  extends PropsWithChildren<React.HTMLAttributes<HTMLElement>> {
+  extends PropsWithChildren<HTMLAttributes<HTMLElement>> {
   /** 렌더링할 HTML 요소 */
   as?: As;
   /** 내부 여백 (spacing 토큰) */
@@ -98,7 +97,7 @@ export const Box = ({
     margin,
   });
 
-  const inlineStyle: React.CSSProperties = {
+  const inlineStyle: CSSProperties = {
     ...(width && { width }),
     ...(height && { height }),
   };

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { type ChangeEvent, useState } from "react";
 import { css } from "../../../styled-system/css";
 import { vstack } from "../../../styled-system/patterns";
 import { TextInput } from "./TextInput";
 
-export default {
+const meta = {
   component: TextInput,
   parameters: {
     layout: "centered",
@@ -40,7 +40,9 @@ export default {
   },
 } satisfies Meta<typeof TextInput>;
 
-type Story = StoryObj<typeof TextInput>;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
@@ -136,7 +138,7 @@ const ControlledTextInput = () => {
   const [value, setValue] = useState("");
   const [hasError, setHasError] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
 

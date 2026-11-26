@@ -1,5 +1,4 @@
-import type React from "react";
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { css, cva } from "../../../styled-system/css";
 import type { Tone } from "../../tokens/colors";
 
@@ -9,7 +8,7 @@ type ButtonSize = "sm" | "md" | "lg";
 export interface ButtonProps
   extends Omit<HTMLAttributes<HTMLElement>, "style"> {
   /** 텍스트 */
-  children: React.ReactNode;
+  children: ReactNode;
   /** 타입 */
   type?: "button" | "submit";
   /** 클릭 시 실행함수 */

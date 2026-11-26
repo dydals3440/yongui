@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { type SubmitEvent, useState } from "react";
 import { vstack } from "../../../styled-system/patterns";
 import { Button } from "../Button/Button";
 import { Checkbox } from "./Checkbox";
 
-export default {
+const meta = {
   component: Checkbox,
   parameters: {
     layout: "centered",
@@ -25,9 +25,13 @@ export default {
   },
 } satisfies Meta<typeof Checkbox>;
 
-export const Basic: StoryObj<typeof Checkbox> = {};
+export default meta;
 
-export const Tones: StoryObj<typeof Checkbox> = {
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};
+
+export const Tones: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>
@@ -50,7 +54,7 @@ export const Tones: StoryObj<typeof Checkbox> = {
   },
 };
 
-export const States: StoryObj<typeof Checkbox> = {
+export const States: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>
@@ -74,7 +78,7 @@ export const States: StoryObj<typeof Checkbox> = {
   },
 };
 
-export const Disabled: StoryObj<typeof Checkbox> = {
+export const Disabled: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>
@@ -105,9 +109,9 @@ export const Disabled: StoryObj<typeof Checkbox> = {
   },
 };
 
-export const Required: StoryObj<typeof Checkbox> = {
+export const Required: Story = {
   render: (args) => {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log("submit");
     };
@@ -141,7 +145,7 @@ export const Required: StoryObj<typeof Checkbox> = {
   },
 };
 
-export const WithValue: StoryObj<typeof Checkbox> = {
+export const WithValue: Story = {
   render: (args) => {
     const [checkedValue, setCheckedValue] = useState<string | null>(null);
 

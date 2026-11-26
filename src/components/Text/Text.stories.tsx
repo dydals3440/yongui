@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { vstack } from "../../../styled-system/patterns";
 import { Text } from "./Text";
 
-export default {
+const meta = {
   component: Text,
   parameters: {
     layout: "centered",
@@ -30,9 +30,13 @@ export default {
   },
 } satisfies Meta<typeof Text>;
 
-export const Basic: StoryObj<typeof Text> = {};
+export default meta;
 
-export const Tones: StoryObj<typeof Text> = {
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};
+
+export const Tones: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "24" })}>
@@ -67,7 +71,7 @@ export const Tones: StoryObj<typeof Text> = {
   },
 };
 
-export const Contrasts: StoryObj<typeof Text> = {
+export const Contrasts: Story = {
   args: {
     as: "div",
   },

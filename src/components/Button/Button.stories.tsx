@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { vstack } from "../../../styled-system/patterns";
 import { Button } from "./Button";
 
-export default {
+const meta = {
   component: Button,
   parameters: {
     layout: "centered",
@@ -42,9 +42,13 @@ export default {
   },
 } satisfies Meta<typeof Button>;
 
-export const Basic: StoryObj<typeof Button> = {};
+export default meta;
 
-export const Variants: StoryObj<typeof Button> = {
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};
+
+export const Variants: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>
@@ -67,7 +71,7 @@ export const Variants: StoryObj<typeof Button> = {
   },
 };
 
-export const Tones: StoryObj<typeof Button> = {
+export const Tones: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>
@@ -102,7 +106,7 @@ export const Tones: StoryObj<typeof Button> = {
   },
 };
 
-export const Sizes: StoryObj<typeof Button> = {
+export const Sizes: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>
@@ -128,7 +132,7 @@ export const Sizes: StoryObj<typeof Button> = {
   },
 };
 
-export const Disabled: StoryObj<typeof Button> = {
+export const Disabled: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>
@@ -149,7 +153,7 @@ export const Disabled: StoryObj<typeof Button> = {
   },
 };
 
-export const Loading: StoryObj<typeof Button> = {
+export const Loading: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "16" })}>

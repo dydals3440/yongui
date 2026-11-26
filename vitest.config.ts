@@ -1,12 +1,12 @@
-// @ts-nocheck
-import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
-import { defineConfig } from "vitest/config";
+import { defineConfig, mergeConfig } from "vitest/config";
+import viteConfig from "./vite.config.ts";
 
-export default defineConfig({
-  plugins: [react(), svgr()],
-  test: {
-    environment: "happy-dom",
-    setupFiles: ["./src/setupTests.tsx"],
-  },
-});
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      environment: "happy-dom",
+      setupFiles: ["./src/setupTests.tsx"],
+    },
+  }),
+);

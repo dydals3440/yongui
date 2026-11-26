@@ -27,7 +27,7 @@ const itemStyleProps = {
 /** 데모용 자식 요소 스타일 */
 const itemStyle = css(itemStyleProps);
 
-export default {
+const meta = {
   component: VStack,
   parameters: {
     layout: "centered",
@@ -90,7 +90,9 @@ export default {
   },
 } satisfies Meta<typeof VStack>;
 
-type Story = StoryObj<typeof VStack>;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
 
 /** 기본 사용법 */
 export const Basic: Story = {};

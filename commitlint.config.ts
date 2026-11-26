@@ -2,7 +2,6 @@ import type { UserConfig } from "@commitlint/types";
 
 const config: UserConfig = {
   extends: ["@commitlint/config-conventional"],
-  parserPreset: "conventional-changelog-conventionalcommits",
   rules: {
     "subject-max-length": [2, "always", 72],
     "subject-min-length": [2, "always", 1],
