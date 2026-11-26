@@ -42,9 +42,10 @@ jobs:
 
   register-deployment:
     needs: build-chromatic
-    # TurboSnap이 빌드를 건너뛰면 storybookUrl이 비어 있다. 빈 URL로 배포를 등록하면
-    # Storybook Tests가 접속할 주소 없이 실패하므로, 새 Storybook이 있을 때만 등록한다.
-    if: needs.build-chromatic.outputs.final_url != ''
+    # TurboSnap이 빌드를 건너뛰면 chromaui/action은 storybookUrl로 문자열 "undefined"를 낸다.
+    # 그 값으로 배포를 등록하면 Storybook Tests가 접속할 주소 없이 실패하므로,
+    # 새 Storybook URL이 있을 때만 등록한다.
+    if: startsWith(needs.build-chromatic.outputs.final_url, 'https://')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions: {}
