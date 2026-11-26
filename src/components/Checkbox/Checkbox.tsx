@@ -1,6 +1,6 @@
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { css, cva } from "../../../styled-system/css";
 import type { Tone } from "../../tokens/colors";
 
@@ -12,7 +12,7 @@ export interface CheckboxProps
   /** 체크박스의 고유 식별자 */
   id: string;
   /** 라벨 */
-  label: React.ReactNode;
+  label: ReactNode;
   /** 체크박스의 값 */
   value?: string;
   /** 색조 */
@@ -130,8 +130,12 @@ export const checkboxVariants = cva({
     },
     "&:disabled": {
       borderColor: "border.neutral.disabled",
-      bg: "transparent!",
       cursor: "not-allowed",
+    },
+    // 체크된 비활성 상태는 disabled 변형의 배경을 쓴다. Panda v2는 명시도가 같은 규칙을
+    // 작성 순서가 아닌 선택자 문자열 순으로 정렬하므로, 두 규칙이 겹치지 않게 범위를 나눈다.
+    "&:disabled:not([data-state='checked'])": {
+      bg: "transparent!",
     },
   },
   variants: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { vstack } from "../../../styled-system/patterns";
 import { Icon } from "./Icon";
 
-export default {
+const meta = {
   component: Icon,
   parameters: {
     layout: "centered",
@@ -26,9 +26,13 @@ export default {
   },
 } satisfies Meta<typeof Icon>;
 
-export const Basic: StoryObj<typeof Icon> = {};
+export default meta;
 
-export const Sizes: StoryObj<typeof Icon> = {
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};
+
+export const Sizes: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "24" })}>
@@ -42,7 +46,7 @@ export const Sizes: StoryObj<typeof Icon> = {
   argTypes: { size: { control: false } },
 };
 
-export const Tones: StoryObj<typeof Icon> = {
+export const Tones: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "24" })}>

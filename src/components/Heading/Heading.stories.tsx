@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { vstack } from "../../../styled-system/patterns";
 import { Heading } from "./Heading";
 
-export default {
+const meta = {
   component: Heading,
   parameters: {
     layout: "centered",
@@ -46,9 +46,13 @@ export default {
   },
 } satisfies Meta<typeof Heading>;
 
-export const Basic: StoryObj<typeof Heading> = {};
+export default meta;
 
-export const Levels: StoryObj<typeof Heading> = {
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};
+
+export const Levels: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "24" })}>
@@ -83,7 +87,7 @@ export const Levels: StoryObj<typeof Heading> = {
   },
 };
 
-export const Tones: StoryObj<typeof Heading> = {
+export const Tones: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "24" })}>
@@ -118,7 +122,7 @@ export const Tones: StoryObj<typeof Heading> = {
   },
 };
 
-export const Sizes: StoryObj<typeof Heading> = {
+export const Sizes: Story = {
   render: (args) => {
     return (
       <div className={vstack({ gap: "24" })}>
@@ -153,7 +157,7 @@ export const Sizes: StoryObj<typeof Heading> = {
   },
 };
 
-export const Alignments: StoryObj<typeof Heading> = {
+export const Alignments: Story = {
   render: (args) => {
     return (
       <div
@@ -184,7 +188,7 @@ export const Alignments: StoryObj<typeof Heading> = {
   },
 };
 
-export const WordBreaks: StoryObj<typeof Heading> = {
+export const WordBreaks: Story = {
   render: (args) => {
     return (
       <div

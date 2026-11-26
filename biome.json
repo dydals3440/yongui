@@ -25,18 +25,9 @@
     },
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "correctness": {
         "noUnusedImports": "error"
-      },
-      "nursery": {
-        "useSortedClasses": {
-          "fix": "safe",
-          "level": "error",
-          "options": {
-            "functions": ["clsx", "cn", "cva", "tw", "tw.*"]
-          }
-        }
       },
       "style": {
         "useSelfClosingElements": "error"

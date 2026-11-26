@@ -21,7 +21,7 @@ const contentStyle = css({
   fontSize: "14",
 });
 
-export default {
+const meta = {
   component: Box,
   parameters: {
     layout: "centered",
@@ -69,7 +69,9 @@ export default {
   },
 } satisfies Meta<typeof Box>;
 
-type Story = StoryObj<typeof Box>;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
 
 /** 기본 사용법 */
 export const Basic: Story = {};

@@ -15,6 +15,9 @@ import {
 } from "./src/tokens/typography";
 
 export default defineConfig({
+  // v2부터 기본 프리셋을 자동으로 넣지 않는다. v1과 같은 유틸리티·조건·토큰을 쓰려고 명시한다.
+  presets: ["@pandacss/preset-base", "@pandacss/preset-panda"],
+
   // Whether to use css reset
   preflight: true,
 

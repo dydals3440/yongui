@@ -1,13 +1,18 @@
 name: Auto Author Assign
 
 on:
-  pull_request_target:
+  # fork PR에도 담당자를 지정하려면 쓰기 토큰이 필요하다.
+  # PR 코드를 checkout하거나 실행하지 않으므로 pull_request_target을 쓴다.
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     types: [opened, reopened]
+
+permissions: {}
 
 jobs:
   assign-author:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       pull-requests: write
     steps:
-      - uses: toshimaru/auto-author-assign@v3.0.1
+      - uses: toshimaru/auto-author-assign@415448809ea5ba0e171b251632720b009df3d8d6 # v3.1.1

@@ -64,14 +64,14 @@ describe("wrap 속성", () => {
     { wrap: "nowrap", className: "flex-wrap_nowrap" },
     { wrap: "wrap", className: "flex-wrap_wrap" },
     { wrap: "wrapReverse", className: "flex-wrap_wrap-reverse" },
-  ] as const)("wrap=$wrap일 때 $className 클래스가 적용됨", ({
-    wrap,
-    className,
-  }) => {
-    render(<VStack wrap={wrap}>내용</VStack>);
+  ] as const)(
+    "wrap=$wrap일 때 $className 클래스가 적용됨",
+    ({ wrap, className }) => {
+      render(<VStack wrap={wrap}>내용</VStack>);
 
-    expect(screen.getByText("내용")).toHaveClass(className);
-  });
+      expect(screen.getByText("내용")).toHaveClass(className);
+    },
+  );
 });
 
 describe("align 속성", () => {
@@ -81,14 +81,14 @@ describe("align 속성", () => {
     { align: "end", className: "ai_flex-end" },
     { align: "stretch", className: "ai_stretch" },
     { align: "baseline", className: "ai_baseline" },
-  ] as const)("align=$align일 때 $className 클래스가 적용됨", ({
-    align,
-    className,
-  }) => {
-    render(<VStack align={align}>내용</VStack>);
+  ] as const)(
+    "align=$align일 때 $className 클래스가 적용됨",
+    ({ align, className }) => {
+      render(<VStack align={align}>내용</VStack>);
 
-    expect(screen.getByText("내용")).toHaveClass(className);
-  });
+      expect(screen.getByText("내용")).toHaveClass(className);
+    },
+  );
 });
 
 describe("justify 속성", () => {
@@ -99,14 +99,14 @@ describe("justify 속성", () => {
     { justify: "between", className: "jc_space-between" },
     { justify: "around", className: "jc_space-around" },
     { justify: "evenly", className: "jc_space-evenly" },
-  ] as const)("justify=$justify일 때 $className 클래스가 적용됨", ({
-    justify,
-    className,
-  }) => {
-    render(<VStack justify={justify}>내용</VStack>);
+  ] as const)(
+    "justify=$justify일 때 $className 클래스가 적용됨",
+    ({ justify, className }) => {
+      render(<VStack justify={justify}>내용</VStack>);
 
-    expect(screen.getByText("내용")).toHaveClass(className);
-  });
+      expect(screen.getByText("내용")).toHaveClass(className);
+    },
+  );
 });
 
 describe("gap 속성", () => {
